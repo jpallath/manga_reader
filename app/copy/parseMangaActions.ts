@@ -23,6 +23,10 @@ export const fetchManga = async (formData: FormData): Promise<MangaData> => {
   }
 };
 
+export const saveManga = (mangaData: MangaData) => {
+    // this will be a function to save this into my local along with saving it into the database the location of each file.
+}
+
 const parseManga = async (text: string) => {
   const $ = cheerio.load(text);
   const title = $("title");
@@ -35,3 +39,4 @@ const parseManga = async (text: string) => {
   }
   return { title: title.text().split("|")[0], images };
 };
+
