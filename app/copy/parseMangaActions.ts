@@ -4,6 +4,7 @@ const cheerio = require("cheerio");
 
 interface MangaData {
   title: string;
+  chapter: string;
   images: string[];
 }
 
@@ -12,24 +13,35 @@ export const fetchManga = async (formData: FormData): Promise<MangaData> => {
   if (typeof link === "string") {
     try {
       const response = await fetch(link);
-      const { title, images } = await parseManga(await response.text());
-      return { title, images };
+      const { title, chapter, images } = await parseManga(
+        await response.text()
+      );
+      return { title, chapter, images };
     } catch (err) {
-      return { title: "", images: [] };
       console.error(err);
+      return { title: "", chapter: "", images: [] };
     }
   } else {
-    return { title: "", images: [] };
+    return { title: "", chapter: "", images: [] };
   }
 };
 
 export const saveManga = (mangaData: MangaData) => {
-    // this will be a function to save this into my local along with saving it into the database the location of each file.
-}
+  // after the user determines he wants to save the chapter into the DB
+  // first check if series exists in DB by verifying name
+  // if series doesnt exist, add series to db (new function)
+  // else, check if chapter exists
+  // if chapter doesnt exist, add chapter and then add pages to db (new function)
+  // else return error
+};
 
 const parseManga = async (text: string) => {
   const $ = cheerio.load(text);
-  const title = $("title");
+  console.log($);
+  const titleTag = $("title").text().split("|")[0];
+  const title = titleTag.split(" Chapter ")[0];
+  const chapter = titleTag.split(" Chapter ")[1];
+  // const chapter = titleTag.split(" Chapter ")[1];
   const pictureTags = $("picture");
   const images = [];
   for (const pic of pictureTags) {
@@ -37,6 +49,5 @@ const parseManga = async (text: string) => {
     const src = img.attr("src");
     images.push(src);
   }
-  return { title: title.text().split("|")[0], images };
+  return { title, chapter, images };
 };
-

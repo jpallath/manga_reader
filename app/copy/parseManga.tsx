@@ -37,6 +37,7 @@ export const ParseManga = () => {
       {response !== null && (
         <ResponseComponent
           responseTitle={response.title}
+          responseChapter={response.chapter}
           responseImages={response.images}
         />
       )}
@@ -47,17 +48,20 @@ export const ParseManga = () => {
 
 interface ResponseComponentProps {
   responseTitle: string;
+  responseChapter: string;
   responseImages: string[];
 }
 
 const ResponseComponent: React.FC<ResponseComponentProps> = ({
   responseTitle,
+  responseChapter,
   responseImages,
 }) => {
-  // <pre>{JSON.stringify(response, null, 2)}</pre>;
   return (
     <div className="flex flex-col items-center justify-center">
-      <h1>{responseTitle}</h1>
+      <h1>
+        {responseTitle}:{responseChapter}
+      </h1>
       <Carousel className="w-9/12">
         <CarouselNext />
         <CarouselContent>
