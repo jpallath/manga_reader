@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { fetchManga } from "./parseMangaActions";
+import { fetchManga, saveManga } from "./parseMangaActions";
 import { useState } from "react";
 import {
   Carousel,
@@ -41,7 +41,9 @@ export const ParseManga = () => {
           responseImages={response.images}
         />
       )}
-      {response !== null && <Button>Save</Button>}
+      {response !== null && (
+        <Button onClick={() => saveManga(response)}>Save</Button>
+      )}
     </div>
   );
 };
@@ -60,7 +62,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = ({
   return (
     <div className="flex flex-col items-center justify-center">
       <h1>
-        {responseTitle}:{responseChapter}
+        {responseTitle}: {responseChapter}
       </h1>
       <Carousel className="w-9/12">
         <CarouselNext />

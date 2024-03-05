@@ -20,23 +20,16 @@ model Series {
 }
 
 model Chapter {
-  id              String   @id @default(uuid())
-  series          Series   @relation(fields: [series_id], references: [id])
-  series_id       String
-  chapter         Int
-  chapterTitle    String
-  nextChapter     Chapter? @relation("NextChapter", fields: [nextChapterId], references: [id])
-  nextChapterId   String   @unique
-  previousChapter Chapter? @relation("NextChapter")
-  Page            Page[]
+  id        String @id @default(uuid())
+  series    Series @relation(fields: [series_id], references: [id])
+  series_id String
+  chapter   Int
+  Page      Page[]
 }
 
 model Page {
-  id           String  @id @default(uuid())
-  url          String
-  chapter      Chapter @relation(fields: [chapter_id], references: [id])
-  chapter_id   String
-  nextPage     Page?   @relation("NextPage", fields: [nextPageId], references: [id])
-  nextPageId   String? @unique
-  previousPage Page?   @relation("NextPage")
+  id         String  @id @default(uuid())
+  url        String
+  chapter    Chapter @relation(fields: [chapter_id], references: [id])
+  chapter_id String
 }

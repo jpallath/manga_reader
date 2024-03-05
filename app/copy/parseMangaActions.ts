@@ -1,10 +1,12 @@
 "use server";
+import { fetchOrGenerateChapter } from "@/db/chapters";
+import { fetchOrGenerateSeries } from "@/db/series";
 import fetch from "node-fetch";
 const cheerio = require("cheerio");
 
 interface MangaData {
   title: string;
-  chapter: string;
+  chapter: number;
   images: string[];
 }
 
@@ -19,28 +21,32 @@ export const fetchManga = async (formData: FormData): Promise<MangaData> => {
       return { title, chapter, images };
     } catch (err) {
       console.error(err);
-      return { title: "", chapter: "", images: [] };
+      return { title: "", chapter: 0, images: [] };
     }
   } else {
-    return { title: "", chapter: "", images: [] };
+    return { title: "", chapter: 0, images: [] };
   }
 };
 
-export const saveManga = (mangaData: MangaData) => {
+export const saveManga = async (mangaData: MangaData) => {
   // after the user determines he wants to save the chapter into the DB
-  // first check if series exists in DB by verifying name
-  // if series doesnt exist, add series to db (new function)
-  // else, check if chapter exists
+  const series = await fetchOrGenerateSeries(mangaData.title);
+  if (series) {
+    const chapter = await fetchOrGenerateChapter({
+      seriesId: series.id,
+      chapter: mangaData.chapter,
+      images: mangaData.images,
+    });
+  }
   // if chapter doesnt exist, add chapter and then add pages to db (new function)
   // else return error
 };
 
 const parseManga = async (text: string) => {
   const $ = cheerio.load(text);
-  console.log($);
   const titleTag = $("title").text().split("|")[0];
-  const title = titleTag.split(" Chapter ")[0];
-  const chapter = titleTag.split(" Chapter ")[1];
+  const title = titleTag.split(" Chapter ")[0].trim();
+  const chapter = parseInt(titleTag.split(" Chapter ")[1]);
   // const chapter = titleTag.split(" Chapter ")[1];
   const pictureTags = $("picture");
   const images = [];
