@@ -1,16 +1,17 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
+import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_APIKEY,
-  authDomain: process.env.FIREBASE_AUTHDOMAIN,
-  projectId: process.env.FIREBASE_PROJECTID,
-  storageBucket: process.env.FIREBASE_STORAGEBUCKET,
-  messagingSenderId: process.env.FIREBASE_MESSAGINGSENDERID,
-  appId: process.env.FIREBASE_APPID,
-  measurementId: process.env.FIREBASE_MEASUREMENTID,
+  apiKey: "AIzaSyAispC_I95lpltu9M3iI-mL_zzlOvKUdIs",
+  authDomain: "mangareader-a9921.firebaseapp.com",
+  projectId: "mangareader-a9921",
+  storageBucket: "mangareader-a9921.appspot.com",
+  messagingSenderId: "767030455551",
+  appId: "1:767030455551:web:39606124cfc62eebfbb0ca",
+  measurementId: "G-BX4JL2LF3K",
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
+
+export const storage = getStorage(app);

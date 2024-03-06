@@ -11,8 +11,10 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
+
 export const ParseManga = () => {
   const [response, setResponse] = useState<any>(null);
+  const [imageUpload, setImageUpload] = useState(null);
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     const form = event.currentTarget;

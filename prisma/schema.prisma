@@ -24,12 +24,14 @@ model Chapter {
   series    Series @relation(fields: [series_id], references: [id])
   series_id String
   chapter   Int
-  Page      Page[]
+  pages     Page[]
 }
 
 model Page {
-  id         String  @id @default(uuid())
-  url        String
-  chapter    Chapter @relation(fields: [chapter_id], references: [id])
-  chapter_id String
+  id             String  @id @default(uuid())
+  url            String
+  chapter        Chapter @relation(fields: [chapter_id], references: [id])
+  chapter_id     String
+  pageNumber     Int
+  nextPageId     String? @unique
 }

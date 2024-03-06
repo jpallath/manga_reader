@@ -2,6 +2,9 @@
 import { fetchOrGenerateChapter } from "@/db/chapters";
 import { fetchOrGenerateSeries } from "@/db/series";
 import fetch from "node-fetch";
+import { storage } from "@/lib/firebaseConfig";
+import { ref, uploadBytes } from "firebase/storage";
+import { generateNewPage, updatePage } from "@/db/pages";
 const cheerio = require("cheerio");
 
 interface MangaData {
@@ -29,7 +32,6 @@ export const fetchManga = async (formData: FormData): Promise<MangaData> => {
 };
 
 export const saveManga = async (mangaData: MangaData) => {
-  // after the user determines he wants to save the chapter into the DB
   const series = await fetchOrGenerateSeries(mangaData.title);
   if (series) {
     const chapter = await fetchOrGenerateChapter({
@@ -37,9 +39,41 @@ export const saveManga = async (mangaData: MangaData) => {
       chapter: mangaData.chapter,
       images: mangaData.images,
     });
+    let lastImage = "";
+    if (chapter) {
+      let previousPage: string | null = null;
+      const { images } = mangaData;
+      for (let index = 0; index < images.length; index++) {
+        const image = images[index];
+        try {
+          const response = await fetch(image);
+          const arrayBuffer = await response.arrayBuffer();
+          const fileBlob = new Blob([arrayBuffer], {
+            type: "image/jpeg",
+          });
+          const imageRef = ref(
+            storage,
+            `${series.id}/chapter${mangaData.chapter}/p${index}`
+          );
+          const data = await uploadBytes(imageRef, fileBlob);
+          const page = await generateNewPage({
+            chapterId: chapter.id,
+            page: index,
+            url: data.metadata.fullPath,
+          });
+          if (page) {
+            if (previousPage) {
+              await updatePage(page.id, previousPage);
+            }
+          }
+          previousPage = page.id;
+        } catch (err) {
+          console.log("Error at try catch for generating per page");
+          console.log(err);
+        }
+      }
+    }
   }
-  // if chapter doesnt exist, add chapter and then add pages to db (new function)
-  // else return error
 };
 
 const parseManga = async (text: string) => {
@@ -47,7 +81,6 @@ const parseManga = async (text: string) => {
   const titleTag = $("title").text().split("|")[0];
   const title = titleTag.split(" Chapter ")[0].trim();
   const chapter = parseInt(titleTag.split(" Chapter ")[1]);
-  // const chapter = titleTag.split(" Chapter ")[1];
   const pictureTags = $("picture");
   const images = [];
   for (const pic of pictureTags) {
