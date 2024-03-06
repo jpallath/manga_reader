@@ -1,4 +1,4 @@
-import { getSeries } from "@/components/serverComponents/getSeries";
+import { getSeries } from "@/components/actions/getSeries";
 import Link from "next/link";
 
 export default async function Home() {
