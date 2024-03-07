@@ -16,7 +16,6 @@ export const UpdateSeriesImages = () => {
   const [series, setSeries] = useState<Series[]>([]);
   const [file, setFile] = useState<File>();
 
-  //   const series = getAllSeries();
   useEffect(() => {
     const getSeries = async () => {
       setSeries(await getAllSeries());

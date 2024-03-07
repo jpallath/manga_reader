@@ -3,7 +3,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-interface Series {
+export interface Series {
   id: string;
   name?: string;
   imageUrl?: string | null;
