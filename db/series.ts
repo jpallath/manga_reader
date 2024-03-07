@@ -3,15 +3,35 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
-export const fetchOrGenerateSeries = async (title: string) => {
+interface Series {
+  id: string;
+  name?: string;
+  imageUrl?: string | null;
+}
+
+export const getAllSeries = async () => {
   try {
-    let series = await prisma.series.findFirst({ where: { name: title } });
+    return await prisma.series.findMany({});
+  } catch (err) {
+    console.log(err);
+    throw err;
+  }
+};
+
+export const fetchOrGenerateSeries = async (
+  title: string
+): Promise<Series | null> => {
+  try {
+    let series: Series | null = await prisma.series.findFirst({
+      where: { name: title },
+    });
     if (!series) {
       series = await generateNewSeries(title);
     }
-    return series;
+    return series as Series;
   } catch (err) {
     console.error(err);
+    throw err;
   }
 };
 
@@ -21,5 +41,17 @@ const generateNewSeries = async (title: string) => {
   } catch (err) {
     console.error(err);
     return { id: "", name: "" };
+  }
+};
+
+export const updateSeries = async (series: Series) => {
+  try {
+    const { id, ...data } = series;
+    await prisma.series.update({
+      where: { id: id },
+      data: { ...data },
+    });
+  } catch (error) {
+    throw error;
   }
 };
