@@ -68,8 +68,7 @@ export const saveManga = async (mangaData: MangaData) => {
           }
           previousPage = page.id;
         } catch (err) {
-          console.log("Error at try catch for generating per page");
-          console.log(err);
+          console.error(err);
         }
       }
     }

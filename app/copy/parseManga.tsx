@@ -11,7 +11,6 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-
 export const ParseManga = () => {
   const [response, setResponse] = useState<any>(null);
   const [imageUpload, setImageUpload] = useState(null);
@@ -23,7 +22,7 @@ export const ParseManga = () => {
       const response = await fetchManga(formData);
       setResponse(response);
     } catch (error) {
-      console.log(error);
+      console.error(error);
       // setError(error.message);
     }
   };

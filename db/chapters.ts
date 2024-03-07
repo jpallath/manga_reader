@@ -18,8 +18,7 @@ export const fetchOrGenerateChapter = async (chapterData: ChapterData) => {
       chapter = await generateNewChapter(chapterData);
     }
     return chapter;
-  } catch (err) {
-  }
+  } catch (err) {}
 };
 
 export const generateNewChapter = async (chapterData: ChapterData) => {
@@ -31,7 +30,7 @@ export const generateNewChapter = async (chapterData: ChapterData) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return {
       series_id: "",
       id: "",

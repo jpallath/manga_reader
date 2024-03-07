@@ -6,7 +6,11 @@ export default async function Home() {
   return (
     <ul>
       {series.map((series) => {
-        return <Link href={`series/${series.id}`}>{series.name}</Link>;
+        return (
+          <Link key={series.id} href={`series/${series.id}`}>
+            {series.name}
+          </Link>
+        );
       })}
     </ul>
   );

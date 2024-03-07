@@ -11,7 +11,7 @@ export const fetchOrGenerateSeries = async (title: string) => {
     }
     return series;
   } catch (err) {
-    console.log(err);
+    console.error(err);
   }
 };
 
@@ -19,7 +19,7 @@ const generateNewSeries = async (title: string) => {
   try {
     return await prisma.series.create({ data: { name: title } });
   } catch (err) {
-    console.log(err);
+    console.error(err);
     return { id: "", name: "" };
   }
 };

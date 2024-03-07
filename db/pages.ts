@@ -20,8 +20,7 @@ export const generateNewPage = async (pageData: PageData) => {
       },
     });
   } catch (err) {
-    console.log("error at generate new page");
-    console.log(err);
+    console.error(err);
     return {
       id: "",
       name: "",
@@ -43,8 +42,7 @@ export const updatePage = async (
       data: { nextPageId: nextPageId },
     });
   } catch (err) {
-    console.log("error at updating each page");
-    console.log(err);
+    console.error(err);
     return { id: "", name: "" };
   }
 };
