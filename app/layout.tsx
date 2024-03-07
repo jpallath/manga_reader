@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { Providers } from "./providers";
+import { ThemeToggle } from "@/components/ui/themeToggle";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -23,7 +25,10 @@ export default function RootLayout({
           inter.variable
         )}
       >
-        {children}
+        <Providers attribute="class" defaultTheme="system">
+          {children}
+          <ThemeToggle />
+        </Providers>
       </body>
     </html>
   );
