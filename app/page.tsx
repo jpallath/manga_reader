@@ -26,16 +26,13 @@ export default async function Home() {
   const images = await Promise.all(imagesPromises);
 
   return (
-    <div className="flex flex-col items-center justify-center h-full p-5">
-      <Carousel className="flex items-center justify-center">
+    <div>
+      <Carousel>
         <CarouselNext />
         <CarouselContent>
           {images.map((sery) => {
             return (
-              <CarouselItem
-                key={sery.id}
-                className="w-full h-full flex items-center justify-center basis-2/3"
-              >
+              <CarouselItem key={sery.id} className="basis-1/2 md:basis-1/3">
                 <Link href={`series/${sery.id}`}>
                   <picture>
                     <img src={sery.image} />
@@ -51,3 +48,27 @@ export default async function Home() {
     </div>
   );
 }
+
+// <div className="flex flex-col items-center justify-center h-full p-5">
+//   <Carousel className="flex items-center justify-center">
+//     <CarouselNext />
+//     <CarouselContent>
+//       {images.map((sery) => {
+//         return (
+//           <CarouselItem
+//             key={sery.id}
+//             className="w-full h-full flex items-center justify-center basis-2/3"
+//           >
+//             <Link href={`series/${sery.id}`}>
+//               <picture>
+//                 <img src={sery.image} />
+//               </picture>
+//               <h1>{sery.name}</h1>
+//             </Link>
+//           </CarouselItem>
+//         );
+//       })}
+//     </CarouselContent>
+//     <CarouselPrevious />
+//   </Carousel>
+// </div>;

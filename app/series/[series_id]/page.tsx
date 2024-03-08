@@ -10,7 +10,7 @@ export default async function Page({
   const { series_id } = params;
   const chapters = await getChapters(series_id);
   return (
-    <main>
+    <main className="flex flex-col">
       {chapters.map((chapter) => {
         return (
           <Link

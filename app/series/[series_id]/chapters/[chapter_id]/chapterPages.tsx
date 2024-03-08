@@ -20,17 +20,14 @@ type ChapterPagesProps = {
 };
 export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
   return (
-    <div className="flex flex-col items-center justify-center h-full p-5">
-      <Carousel className="flex items-center justify-center">
+    <div className="p-5">
+      <Carousel className="">
         <CarouselNext />
         <CarouselContent>
           {pages.map((image, index) => {
             return (
-              <CarouselItem
-                key={index}
-                className="w-full h-full flex items-center justify-center"
-              >
-                <div className="w-full flex items-center justify-center">
+              <CarouselItem key={index} className="">
+                <div className="">
                   <picture>
                     <img src={image.imageUrl} alt={`Image ${index + 1}`} />
                   </picture>

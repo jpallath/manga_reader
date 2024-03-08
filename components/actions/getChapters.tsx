@@ -4,7 +4,10 @@ const prisma = new PrismaClient();
 
 export const getChapters = async (series_id: string) => {
   try {
-    return await prisma.chapter.findMany({ where: { series_id } });
+    return await prisma.chapter.findMany({
+      where: { series_id },
+      orderBy: { chapter: "desc" },
+    });
   } catch (error) {
     throw error;
   }
