@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          "h-screen bg-background font-sans antialiased flex items-center justify-center",
+          "h-screen bg-background font-sans antialiased flex items-center justify-center transition-all",
           inter.variable
         )}
       >
