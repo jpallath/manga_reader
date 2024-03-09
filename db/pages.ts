@@ -46,3 +46,19 @@ export const updatePage = async (
     return { id: "", name: "" };
   }
 };
+
+export const deletePage = async (pageId: string) => {
+  try {
+    return await prisma.page.delete({ where: { id: pageId } });
+  } catch (err) {
+    throw err;
+  }
+};
+
+export const deleteManyPages = async (chapterId: string) => {
+  try {
+    return await prisma.page.deleteMany({ where: { chapter_id: chapterId } });
+  } catch (err) {
+    throw err;
+  }
+};

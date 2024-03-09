@@ -18,7 +18,9 @@ export const fetchOrGenerateChapter = async (chapterData: ChapterData) => {
       chapter = await generateNewChapter(chapterData);
     }
     return chapter;
-  } catch (err) {}
+  } catch (err) {
+    throw err;
+  }
 };
 
 export const generateNewChapter = async (chapterData: ChapterData) => {
@@ -30,11 +32,19 @@ export const generateNewChapter = async (chapterData: ChapterData) => {
       },
     });
   } catch (err) {
-    console.error(err);
+    throw err;
     return {
       series_id: "",
       id: "",
       chapter: 0,
     };
+  }
+};
+
+export const deleteChapter = async (chapterId: string) => {
+  try {
+    return await prisma.chapter.delete({ where: { id: chapterId } });
+  } catch (err) {
+    throw err;
   }
 };
