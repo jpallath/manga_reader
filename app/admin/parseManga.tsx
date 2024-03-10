@@ -1,15 +1,6 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { fetchManga, saveManga } from "./parseMangaActions";
 import { useState } from "react";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 
 export const ParseManga = () => {
   const [response, setResponse] = useState<any>(null);
@@ -32,8 +23,10 @@ export const ParseManga = () => {
         className="flex w-full max-w-sm items-center space-x-2"
         onSubmit={handleSubmit}
       >
-        <Input name="link" type="text" placeholder="link" />
-        <Button type="submit">Subscribe</Button>
+        <input name="link" type="text" placeholder="link" />
+        <button className="bg-slate-900 text-white" type="submit">
+          Subscribe
+        </button>
       </form>
       {response !== null && (
         <ResponseComponent
@@ -43,7 +36,7 @@ export const ParseManga = () => {
         />
       )}
       {response !== null && (
-        <Button onClick={() => saveManga(response)}>Save</Button>
+        <button onClick={() => saveManga(response)}>Save</button>
       )}
     </div>
   );
@@ -65,21 +58,21 @@ const ResponseComponent: React.FC<ResponseComponentProps> = ({
       <h1>
         {responseTitle}: {responseChapter}
       </h1>
-      <Carousel className="w-9/12">
-        <CarouselNext />
-        <CarouselContent>
+      <div className="w-9/12">
+        {/* <CarouselNext /> */}
+        <div>
           {responseImages.map((image, index) => {
             return (
-              <CarouselItem key={index} className="basis-1/3">
+              <div key={index} className="basis-1/3">
                 <picture>
                   <img src={image} />
                 </picture>
-              </CarouselItem>
+              </div>
             );
           })}
-        </CarouselContent>
-        <CarouselPrevious />
-      </Carousel>
+        </div>
+        {/* <CarouselPrevious /> */}
+      </div>
     </div>
   );
 };

@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import { getAllSeries } from "@/db/series";
 import { useEffect, useState } from "react";
 import { updateSeriesImage } from "./updateSeriesAction";
@@ -37,19 +36,19 @@ export const UpdateSeriesImages = () => {
       }
     }
   };
+  const updateSery = (e: any) => {
+    const sery = series.find((sery) => sery.id === e.target.value);
+    if (sery) setSery(sery);
+  };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newFile = event.target.files?.[0];
     setFile(newFile);
   };
   return (
     <form onSubmit={handleSubmit}>
-      <select
-        onChange={(e) => {
-          const selectedSeries = series.find((s) => s.id === e.target.value);
-          if (selectedSeries) setSery(selectedSeries);
-        }}
-      >
-        <option value="">Select a series</option>
+      <select onChange={(e) => updateSery(e)}>
+        <option value="">{"Select a series"}</option>
+
         {series.map((sery) => {
           return (
             <option key={sery.id} value={sery.id}>
@@ -58,9 +57,8 @@ export const UpdateSeriesImages = () => {
           );
         })}
       </select>
-      <p>{sery.name}</p>
-      <input type="file" onChange={handleChange} />
-      <Button type="submit">Submit</Button>
+
+      <button type="submit">Submit</button>
     </form>
   );
 };
