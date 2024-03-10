@@ -22,11 +22,10 @@ export default async function Home() {
   return (
     <div>
       <div>
-        {/* <CarouselNext /> */}
-        <div>
+        <div className="carousel rounded-box">
           {images.map((sery) => {
             return (
-              <div key={sery.id} className="basis-1/2 md:basis-1/3">
+              <div key={sery.id} className="carousel-item basis-1/2">
                 <Link href={`series/${sery.id}`}>
                   <picture>
                     <img src={sery.image} />
@@ -37,7 +36,6 @@ export default async function Home() {
             );
           })}
         </div>
-        {/* <CarouselPrevious /> */}
       </div>
     </div>
   );

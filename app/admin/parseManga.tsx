@@ -40,7 +40,7 @@ export const ParseManga = () => {
         />
       )}
       {response !== null && (
-        <button onClick={() => saveManga(response)}>Save</button>
+        <Button onClick={() => saveManga(response)}>Save</Button>
       )}
     </div>
   );
@@ -58,24 +58,20 @@ const ResponseComponent: React.FC<ResponseComponentProps> = ({
   responseImages,
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div>
       <h1>
         {responseTitle}: {responseChapter}
       </h1>
-      <div className="w-9/12">
-        {/* <CarouselNext /> */}
-        <div>
-          {responseImages.map((image, index) => {
-            return (
-              <div key={index} className="basis-1/3">
-                <picture>
-                  <img src={image} />
-                </picture>
-              </div>
-            );
-          })}
-        </div>
-        {/* <CarouselPrevious /> */}
+      <div className="carousel rounded-box">
+        {responseImages.map((image, index) => {
+          return (
+            <div key={index} className="carousel-item basis-1/3">
+              <picture>
+                <img src={image} />
+              </picture>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

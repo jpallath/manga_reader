@@ -2,9 +2,17 @@ interface ButtonProps {
   variant?: string;
   type?: string;
   children: React.ReactNode;
+  data?: any;
+  onClick?: (data: any) => void;
 }
 
-export const Button: React.FC<ButtonProps> = ({ variant, type, children }) => {
+export const Button: React.FC<ButtonProps> = ({
+  variant,
+  type,
+  children,
+  data,
+  onClick,
+}) => {
   const variantOptions = (variant: string | undefined) => {
     switch (variant) {
       case "primary": {
@@ -34,7 +42,7 @@ export const Button: React.FC<ButtonProps> = ({ variant, type, children }) => {
   const buttonClassName = `btn ${variantOptions(variant)}`;
   const buttonType = typeOptions(type);
   return (
-    <button className={buttonClassName} type={buttonType}>
+    <button className={buttonClassName} type={buttonType} onClick={onClick}>
       {children}
     </button>
   );

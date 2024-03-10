@@ -31,6 +31,7 @@ export const fetchManga = async (link: string): Promise<MangaData> => {
 };
 
 export const saveManga = async (mangaData: MangaData) => {
+  console.log(mangaData);
   const series = await fetchOrGenerateSeries(mangaData.title);
   if (series) {
     const chapter = await fetchOrGenerateChapter({
@@ -70,6 +71,7 @@ export const saveManga = async (mangaData: MangaData) => {
           console.error(err);
         }
       }
+      console.log("images done");
     }
   }
 };

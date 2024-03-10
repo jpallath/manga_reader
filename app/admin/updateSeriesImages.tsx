@@ -46,6 +46,7 @@ export const UpdateSeriesImages = () => {
   };
   return (
     <form onSubmit={handleSubmit}>
+      <input type="file" onChange={handleChange} />
       <select onChange={(e) => updateSery(e)}>
         <option value="">{"Select a series"}</option>
 
