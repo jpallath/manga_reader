@@ -13,8 +13,7 @@ interface MangaData {
   images: string[];
 }
 
-export const fetchManga = async (formData: FormData): Promise<MangaData> => {
-  const link = formData.get("link");
+export const fetchManga = async (link: string): Promise<MangaData> => {
   if (typeof link === "string") {
     try {
       const response = await fetch(link);

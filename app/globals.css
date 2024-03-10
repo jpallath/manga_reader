@@ -4,17 +4,19 @@
 
 @layer base {
   :root {
-    --color-background: 210deg 40%, 98%;
-    --color-content: 217deg 32.6% 17.5%;
-    --accent1: 288deg 95.8%, 90.6%;
-    --accent2: 168deg 83.8%, 78.2%;
+    --text: #020014;
+    --background: #fbfbfe;
+    --primary: #6e20bc;
+    --secondary: #5e328f;
+    --accent: #f358a6;
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --color-background: 217deg 32.6% 17.5%;
-      --color-content: 0deg, 7%, 29%;
-      --accent1: 288deg 95.8%, 90.6%;
-      --accent2: 168deg 83.8%, 78.2%;
+      --text: #edebff;
+      --background: #010104;
+      --primary: #9143df;
+      --secondary: #9b70cd;
+      --accent: #a70c59;
     }
   }
 }

@@ -1,20 +1,20 @@
 "use client";
+import { Button } from "@/components/ui/button";
 import { fetchManga, saveManga } from "./parseMangaActions";
 import { useState } from "react";
+import { Input } from "@/components/ui/input";
 
 export const ParseManga = () => {
   const [response, setResponse] = useState<any>(null);
   const [imageUpload, setImageUpload] = useState(null);
+  const [link, setLink] = useState("");
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    const form = event.currentTarget;
-    const formData = new FormData(form);
     try {
-      const response = await fetchManga(formData);
+      const response = await fetchManga(link);
       setResponse(response);
     } catch (error) {
-      console.error(error);
-      // setError(error.message);
+      throw error;
     }
   };
   return (
@@ -23,10 +23,14 @@ export const ParseManga = () => {
         className="flex w-full max-w-sm items-center space-x-2"
         onSubmit={handleSubmit}
       >
-        <input name="link" type="text" placeholder="link" />
-        <button className="bg-slate-900 text-white" type="submit">
+        <Input
+          value={link}
+          onChange={(e) => setLink(e.target.value)}
+          placeholder="www..."
+        />
+        <Button variant="primary" type="submit">
           Subscribe
-        </button>
+        </Button>
       </form>
       {response !== null && (
         <ResponseComponent
