@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import { Providers } from "./providers";
-// import { ThemeToggle } from "@/components/ui/themeToggle";
+import { ThemeProvider } from "./providers";
+import { ThemeToggle } from "@/components/ui/themeToggle";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,9 +25,10 @@ export default function RootLayout({
           inter.className
         )}
       >
-        <Providers attribute="class" defaultTheme="system">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           {children}
-        </Providers>
+          <ThemeToggle />
+        </ThemeProvider>
       </body>
     </html>
   );

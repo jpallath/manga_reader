@@ -2,21 +2,35 @@
 @tailwind components;
 @tailwind utilities;
 
+* {
+  @apply transition-all duration-150;
+}
 @layer base {
-  :root {
-    --text: #020014;
-    --background: #fbfbfe;
-    --primary: #6e20bc;
-    --secondary: #5e328f;
-    --accent: #f358a6;
+  :root[data-theme="light"],
+  html.light {
+    --text: 2, 0, 20;
+    --background: 251, 251, 254;
+    --primary: 110, 32, 188;
+    --secondary: 94, 50, 143;
+    --accent: 243, 88, 166;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --text: #edebff;
-      --background: #010104;
-      --primary: #9143df;
-      --secondary: #9b70cd;
-      --accent: #a70c59;
-    }
+  :root[data-theme="dark"],
+  html.dark {
+    --text: 237, 235, 255;
+    --background: 1, 1, 4;
+    --primary: 145, 67, 223;
+    --secondary: 155, 112, 205;
+    --accent: 167, 12, 89;
+  }
+}
+
+input[type="file"]::file-selector-button {
+  background: #9143df;
+  color: #fbfbfe;
+}
+@media (prefers-color-scheme: dark) {
+  input[type="file"]::file-selector-button {
+    background: #9143df;
+    color: #010104;
   }
 }

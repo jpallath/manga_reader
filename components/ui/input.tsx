@@ -9,7 +9,7 @@ export const Input: React.FC<InputProps> = ({
   onChange,
 }) => {
   return (
-    <label className="input input-bordered flex items-center gap-2">
+    <label className="input border-primary bg-background text-text flex items-center gap-2">
       <input
         type="text"
         className="grow"

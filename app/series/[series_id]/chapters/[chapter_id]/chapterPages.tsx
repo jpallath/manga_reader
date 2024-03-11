@@ -12,23 +12,20 @@ type ChapterPagesProps = {
 };
 export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
   return (
-    <div className="p-5">
-      <div className="">
-        {/* <CarouselNext /> */}
-        <div>
-          {pages.map((image, index) => {
-            return (
-              <div key={index} className="">
-                <div className="">
-                  <picture>
-                    <img src={image.imageUrl} alt={`Image ${index + 1}`} />
-                  </picture>
-                </div>
+    <div className="p-5 md:p-0 md:flex md:items-center md:justify-center">
+      <div className="carousel rounded-box w-128 md:w-6/12">
+        {/* <div className="carousel rounded-box"> */}
+        {pages.map((image, index) => {
+          return (
+            <div key={index} className="carousel-item w-full">
+              <div className="">
+                <picture>
+                  <img src={image.imageUrl} alt={`Image ${index + 1}`} />
+                </picture>
               </div>
-            );
-          })}
-        </div>
-        {/* <CarouselPrevious /> */}
+            </div>
+          );
+        })}
       </div>
     </div>
   );

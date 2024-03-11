@@ -20,7 +20,7 @@ export const ParseManga = () => {
   return (
     <div className="flex flex-col items-center justify-center">
       <form
-        className="flex w-full max-w-sm items-center space-x-2"
+        className="flex gap-4 w-full max-w-sm items-center space-x-2"
         onSubmit={handleSubmit}
       >
         <Input

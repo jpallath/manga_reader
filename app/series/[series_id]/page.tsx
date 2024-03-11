@@ -17,7 +17,7 @@ export default async function Page({
             href={`/series/${series_id}/chapters/${chapter.id}`}
             key={chapter.id}
           >
-            Chapter {chapter.chapter}
+            <p className="text-text">Chapter {chapter.chapter}</p>
           </Link>
         );
       })}

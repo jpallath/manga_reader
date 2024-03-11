@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { updateSeriesImage } from "./updateSeriesAction";
 import { storage } from "@/lib/firebaseConfig";
 import { ref, uploadBytes } from "firebase/storage";
+import { Button } from "@/components/ui/button";
 
 interface Series {
   id: string;
@@ -45,9 +46,17 @@ export const UpdateSeriesImages = () => {
     setFile(newFile);
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <input type="file" onChange={handleChange} />
-      <select onChange={(e) => updateSery(e)}>
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+      <input
+        type="file"
+        className="file-input w-full max-w-xs border-primary bg-background text-text"
+        onChange={handleChange}
+      />
+
+      <select
+        className="select select-primary border-primary bg-background text-text w-full max-w-xs"
+        onChange={(e) => updateSery(e)}
+      >
         <option value="">{"Select a series"}</option>
 
         {series.map((sery) => {
@@ -59,7 +68,7 @@ export const UpdateSeriesImages = () => {
         })}
       </select>
 
-      <button type="submit">Submit</button>
+      <Button type="submit">Submit</Button>
     </form>
   );
 };

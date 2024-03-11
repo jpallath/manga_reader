@@ -6,14 +6,23 @@ const config: Config = {
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: "media",
   theme: {
     extend: {
+      transitionDelay: { "1": "1s" },
       colors: {
-        text: "var(--text)",
-        background: "var(--background)",
-        primary: "var(--primary)",
-        secondary: "var(--secondary)",
-        accent: "var(--accent)",
+        text: "rgba(var(--text))",
+        background: "rgba(var(--background))",
+        primary: "rgba(var(--primary))",
+        secondary: "rgba(var(--secondary))",
+        accent: "rgba(var(--accent))",
+      },
+      screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
+        "2xl": "1536px",
       },
     },
   },
