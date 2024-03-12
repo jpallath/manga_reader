@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "./providers";
 import { ThemeToggle } from "@/components/ui/themeToggle";
+import { NavigationPane } from "@/components/ui/navigationPane";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -21,11 +22,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          `h-screen bg-background font-sans antialiased flex items-center justify-center transition-all`,
+          `h-screen bg-background font-sans relative antialiased flex items-center justify-center transition-all`,
           inter.className
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <NavigationPane />
           {children}
           <ThemeToggle />
         </ThemeProvider>

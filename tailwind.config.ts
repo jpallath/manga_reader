@@ -9,6 +9,9 @@ const config: Config = {
   darkMode: "media",
   theme: {
     extend: {
+      transitionProperty: {
+        width: "width",
+      },
       transitionDelay: { "1": "1s" },
       colors: {
         text: "rgba(var(--text))",
