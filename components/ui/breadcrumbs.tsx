@@ -14,12 +14,12 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ crumbs }) => {
     <ul className="absolute text-sm breadcrumbs top-16 left-1/4 text-text flex gap-2">
       {crumbs.map((crumb, index) => {
         return (
-          <li className="flex" key={index}>
+          <li className="flex gap-2" key={index}>
             <Link href={crumb.link}>
               <p>{crumb.text} </p>
             </Link>
             {index + 1 < crumbs.length ? (
-              <span className="p-1">
+              <span className="my-1">
                 <svg
                   width="15"
                   height="15"
