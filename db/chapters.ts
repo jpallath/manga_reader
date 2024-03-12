@@ -9,6 +9,17 @@ interface ChapterData {
   images: string[];
 }
 
+export const getSeriesByChapterId = async (chapterId: string) => {
+  try {
+    return await prisma.chapter.findUnique({
+      where: { id: chapterId },
+      include: { series: true },
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
 export const fetchOrGenerateChapter = async (chapterData: ChapterData) => {
   try {
     let chapter = await prisma.chapter.findFirst({

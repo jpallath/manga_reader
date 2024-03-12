@@ -16,8 +16,8 @@ export const NavigationPane = () => {
       className={`absolute w-2/6 h-full transition-all flex items-center justify-center  bg-background z-10 
         ${
           click
-            ? "left-0 opacity-95 border-r border-r-accent rounded-r-xl"
-            : "-left-1/4 opacity-100 bg-bg"
+            ? "left-0 opacity-85 border-r border-r-accent rounded-r-xl"
+            : "-left-1/4 opacity-70 bg-background"
         }`}
     >
       <button
@@ -52,7 +52,7 @@ export const NavigationPane = () => {
             <p className="text-text">Admin</p>
           </Link>
           <Link href="/">
-            <p className="text-white">Home</p>
+            <p className="text-text">Home</p>
           </Link>
         </ul>
       </button>

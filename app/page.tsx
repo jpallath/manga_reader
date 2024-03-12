@@ -27,7 +27,7 @@ export default async function Home() {
             return (
               <div key={sery.id} className="carousel-item basis-1/2">
                 <Link href={`series/${sery.id}`}>
-                  <picture className="w-full h-full flex items-center justify-center p-1">
+                  <picture className="w-full h-full flex items-center justify-center">
                     <img className="w-auto h-4/6" src={sery.image} />
                   </picture>
                   <h1 className="text-text">{sery.name}</h1>
