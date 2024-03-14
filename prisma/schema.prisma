@@ -36,3 +36,13 @@ model Page {
   pageNumber Int
   nextPageId String? @unique
 }
+
+model User {
+  id           String   @id @default(dbgenerated("concat('usr_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
+  email        String   @unique
+  passwordHash String
+  name         String?
+  avatar       String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}

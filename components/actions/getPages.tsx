@@ -1,7 +1,5 @@
 "use server";
-import { PrismaClient } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import { prisma } from "@/lib/prisma";
 
 export const getChapterPages = async (chapter_id: string) => {
   return await prisma.page.findMany({
