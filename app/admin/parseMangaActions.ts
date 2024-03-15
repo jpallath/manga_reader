@@ -30,48 +30,56 @@ export const fetchManga = async (link: string): Promise<MangaData> => {
   }
 };
 
-export const saveManga = async (mangaData: MangaData) => {
-  const series = await fetchOrGenerateSeries(mangaData.title);
-  if (series) {
-    const chapter = await fetchOrGenerateChapter({
-      seriesId: series.id,
-      chapter: mangaData.chapter,
-      images: mangaData.images,
-    });
-    let lastImage = "";
-    if (chapter) {
-      let previousPage: string | null = null;
-      const { images } = mangaData;
-      for (let index = 0; index < images.length; index++) {
-        const image = images[index];
-        try {
-          const response = await fetch(image);
-          const arrayBuffer = await response.arrayBuffer();
-          const fileBlob = new Blob([arrayBuffer], {
-            type: "image/jpeg",
-          });
-          const imageRef = ref(
-            storage,
-            `${series.id}/chapter${mangaData.chapter}/p${index}`
-          );
-          const data = await uploadBytes(imageRef, fileBlob);
-          const page = await generateNewPage({
-            chapterId: chapter.id,
-            page: index,
-            url: data.metadata.fullPath,
-          });
-          if (page) {
-            if (previousPage) {
-              await updatePage(page.id, previousPage);
+export const saveManga = async (mangaData: MangaData): Promise<void> => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      const series = await fetchOrGenerateSeries(mangaData.title);
+      if (series) {
+        const chapter = await fetchOrGenerateChapter({
+          seriesId: series.id,
+          chapter: mangaData.chapter,
+          images: mangaData.images,
+        });
+        if (chapter) {
+          let previousPage: string | null = null;
+          const { images } = mangaData;
+          for (let index = 0; index < images.length; index++) {
+            const image = images[index];
+            try {
+              const response = await fetch(image);
+              const arrayBuffer = await response.arrayBuffer();
+              const fileBlob = new Blob([arrayBuffer], {
+                type: "image/jpeg",
+              });
+              const imageRef = ref(
+                storage,
+                `${series.id}/chapter${mangaData.chapter}/p${index}`
+              );
+              const data = await uploadBytes(imageRef, fileBlob);
+              const page = await generateNewPage({
+                chapterId: chapter.id,
+                page: index,
+                url: data.metadata.fullPath,
+              });
+              if (page && previousPage) {
+                await updatePage(page.id, previousPage);
+              }
+              previousPage = page?.id || null;
+            } catch (err) {
+              console.error(err);
             }
           }
-          previousPage = page.id;
-        } catch (err) {
-          console.error(err);
+          resolve(); // Resolve the Promise indicating that the loop is done
+        } else {
+          reject("Failed to create chapter");
         }
+      } else {
+        reject("Failed to create series");
       }
+    } catch (err) {
+      reject(err);
     }
-  }
+  });
 };
 
 const parseManga = async (text: string) => {

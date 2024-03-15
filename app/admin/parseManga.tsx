@@ -8,6 +8,7 @@ export const ParseManga = () => {
   const [response, setResponse] = useState<any>(null);
   const [imageUpload, setImageUpload] = useState(null);
   const [link, setLink] = useState("");
+  const [savedManga, setSavedManga] = useState(null);
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     try {
@@ -15,6 +16,14 @@ export const ParseManga = () => {
       setResponse(response);
     } catch (error) {
       throw error;
+    }
+  };
+  const savePages = async () => {
+    try {
+      await saveManga(response);
+      console.log("saved");
+    } catch (error) {
+      console.log(error);
     }
   };
   return (
@@ -39,9 +48,7 @@ export const ParseManga = () => {
           responseImages={response.images}
         />
       )}
-      {response !== null && (
-        <Button onClick={() => saveManga(response)}>Save</Button>
-      )}
+      {response !== null && <Button onClick={() => savePages()}>Save</Button>}
     </div>
   );
 };
