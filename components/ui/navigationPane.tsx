@@ -56,7 +56,7 @@ export const NavigationPane = () => {
       </button>
       <div
         onClick={() => signIn("google")}
-        className="bg-primary py-5 px-20 m-2 rounded-xl border-secondary border-4 hover:border-primary hover:bg-secondary transition-all text-text hover:text-background absolute bottom-4 group cursor-pointer"
+        className="bg-primary py-8 px-5 m-2 rounded-xl border-secondary border-4 hover:border-primary hover:bg-secondary transition-all text-text hover:text-background absolute bottom-4 group cursor-pointer"
       >
         <svg
           width="24"
