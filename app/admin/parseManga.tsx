@@ -20,10 +20,10 @@ export const ParseManga = () => {
   };
   const savePages = async () => {
     try {
-      await saveManga(response);
-      console.log("saved");
+      const res = await saveManga(response);
+      console.log(res);
     } catch (error) {
-      console.log(error);
+      console.log("error", error);
     }
   };
   return (

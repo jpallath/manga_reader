@@ -24,7 +24,6 @@ export default async function Home() {
       <div>
         <div className="carousel rounded-box">
           {images.map((sery) => {
-            console.log(sery);
             return (
               <div key={sery.id} className="carousel-item basis-1/2">
                 <Link href={`series/${sery.shortName}`}>
