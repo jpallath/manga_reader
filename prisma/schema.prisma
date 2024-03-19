@@ -41,9 +41,9 @@ model Page {
 model User {
   id           String   @id @default(dbgenerated("concat('usr_', replace(cast(gen_random_uuid() as text), '-', ''))")) @db.Text
   email        String   @unique
-  passwordHash String
-  name         String?
-  avatar       String?
+  passwordHash String?
+  name         String
+  picture      String
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 }
