@@ -17,6 +17,21 @@ export const getSeriesByChapterId = async (chapterId: string) => {
   }
 };
 
+export const getChapterByShortNameAndNumber = async (
+  shortName: string,
+  chapter: string
+) => {
+  try {
+    const series = await prisma.series.findFirst({ where: { shortName } });
+    return await prisma.chapter.findFirst({
+      where: { series_id: series?.id, chapter: parseInt(chapter) },
+      include: { series: true },
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const fetchOrGenerateChapter = async (chapterData: ChapterData) => {
   try {
     let chapter = await prisma.chapter.findFirst({

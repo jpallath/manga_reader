@@ -17,6 +17,14 @@ export const getAllSeries = async () => {
   }
 };
 
+export const getSeriesByShortName = async (shortName: string) => {
+  try {
+    return await prisma.series.findFirst({ where: { shortName } });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 export const fetchOrGenerateSeries = async (
   title: string
 ): Promise<Series | null> => {
@@ -36,7 +44,10 @@ export const fetchOrGenerateSeries = async (
 
 const generateNewSeries = async (title: string) => {
   try {
-    return await prisma.series.create({ data: { name: title } });
+    const shortenedTitle = title.split(" ").join("");
+    return await prisma.series.create({
+      data: { name: title, shortName: shortenedTitle },
+    });
   } catch (err) {
     console.error(err);
     return { id: "", name: "" };

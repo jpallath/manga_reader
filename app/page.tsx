@@ -24,9 +24,10 @@ export default async function Home() {
       <div>
         <div className="carousel rounded-box">
           {images.map((sery) => {
+            console.log(sery);
             return (
               <div key={sery.id} className="carousel-item basis-1/2">
-                <Link href={`series/${sery.id}`}>
+                <Link href={`series/${sery.shortName}`}>
                   <picture className="w-full h-full flex items-center justify-center">
                     <img className="w-auto h-5/6" src={sery.image} />
                   </picture>

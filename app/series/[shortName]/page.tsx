@@ -5,16 +5,16 @@ import Link from "next/link";
 export default async function Page({
   params,
 }: {
-  params: { series_id: string };
+  params: { shortName: string };
 }) {
-  const { series_id } = params;
-  const chapters = await getChapters(series_id);
+  const { shortName } = params;
+  const chapters = await getChapters(shortName);
   return (
     <main className="flex flex-col">
       {chapters.map((chapter) => {
         return (
           <Link
-            href={`/series/${series_id}/chapters/${chapter.id}`}
+            href={`/series/${shortName}/chapters/${chapter.chapter}`}
             key={chapter.id}
           >
             <p className="text-text">Chapter {chapter.chapter}</p>

@@ -14,10 +14,11 @@ datasource db {
 }
 
 model Series {
-  id       String    @id @default(uuid())
-  name     String
-  imageUrl String?
-  Chapter  Chapter[]
+  id        String    @id @default(uuid())
+  name      String
+  shortName String
+  imageUrl  String?
+  Chapter   Chapter[]
 }
 
 model Chapter {
