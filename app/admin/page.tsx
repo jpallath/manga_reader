@@ -1,7 +1,12 @@
+"use client";
+
 import { ParseManga } from "./parseManga";
 import { UpdateSeriesImages } from "./updateSeriesImages";
+import { useSession } from "next-auth/react";
 
-export default async function Page() {
+export default function Page() {
+  const { data: session, status } = useSession();
+  console.log(session, status);
   return (
     <div className="flex flex-col items-center justify-center h-full p-10 gap-20">
       <ParseManga />

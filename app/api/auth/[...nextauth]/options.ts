@@ -1,6 +1,5 @@
 import type { NextAuthOptions, Session } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
 import { prisma } from "@/lib/prisma";
 import { registerUser } from "@/db/user";
 
@@ -19,9 +18,10 @@ export const options: NextAuthOptions = {
       const user = await prisma.user.findUnique({
         where: { email: profile?.email },
       });
-      // if (!user && profile) {
-      //   await registerUser(profile);
-      // }
+      let dbUser = user;
+      if (!user && profile) {
+        dbUser = await registerUser(profile);
+      }
       return true;
     },
   },

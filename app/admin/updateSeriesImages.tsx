@@ -21,7 +21,7 @@ export const UpdateSeriesImages = () => {
       setSeries(await getAllSeries());
     };
     getSeries();
-  });
+  }, []);
   const handleSubmit = async (event: any) => {
     event.preventDefault();
     if (sery && file) {
@@ -50,7 +50,7 @@ export const UpdateSeriesImages = () => {
       <input
         type="file"
         className="file-input w-full max-w-xs border-primary bg-background text-text"
-        onChange={handleChange}
+        onChange={() => handleChange}
       />
 
       <select
