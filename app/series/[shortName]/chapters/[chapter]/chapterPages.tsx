@@ -30,16 +30,18 @@ export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
           );
         })}
       </div>
-      <div className="flex justify-center w-full py-2 gap-2">
+      <div className="flex justify-between w-full py-2 px-6 gap-2">
         {pages.map((image, index) => {
-          return (
-            <a
-              href={`#item${index}`}
-              className="bg-accent text-text w-4 p-1 text-xs flex justify-center rounded-xl"
-            >
-              {index + 1}
-            </a>
-          );
+          if (index == 0 || index == pages.length - 1) {
+            return (
+              <a
+                href={`#item${index}`}
+                className="bg-accent text-text w-4 p-1 text-xs flex justify-center rounded-xl"
+              >
+                {index + 1}
+              </a>
+            );
+          }
         })}
       </div>
     </div>
