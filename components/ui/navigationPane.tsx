@@ -18,7 +18,7 @@ export const NavigationPane: React.FC<NavigationProps> = ({
 }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const { data: session } = useSession();
-  console.log(session);
+
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (navRef.current && !navRef.current.contains(event.target as Node)) {

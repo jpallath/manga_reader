@@ -2,6 +2,7 @@ interface ButtonProps {
   variant?: string;
   type?: string;
   children: React.ReactNode;
+  active: boolean;
   data?: any;
   onClick?: (data: any) => void;
 }
@@ -10,6 +11,7 @@ export const Button: React.FC<ButtonProps> = ({
   variant,
   type,
   children,
+  active = true,
   data,
   onClick,
 }) => {
@@ -39,7 +41,9 @@ export const Button: React.FC<ButtonProps> = ({
       }
     }
   };
-  const buttonClassName = `btn ${variantOptions(variant)}`;
+  const buttonClassName = `btn ${variantOptions(variant)} + ${
+    active ? "brightness-100" : "brightness-50"
+  }`;
   const buttonType = typeOptions(type);
   return (
     <button className={buttonClassName} type={buttonType} onClick={onClick}>

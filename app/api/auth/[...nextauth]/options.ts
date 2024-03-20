@@ -11,7 +11,15 @@ export const options: NextAuthOptions = {
     }),
   ],
   callbacks: {
-    async session({ session }) {
+    async session({ session, user }) {
+      // @ts-ignore
+      // if (user) {
+      //   const userData = await prisma.user.findUnique({
+      //     where: { email: user.email },
+      //   });
+      //   console.log(userData);
+      // }
+
       return session;
     },
     async signIn({ profile }) {
