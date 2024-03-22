@@ -3,6 +3,7 @@ import { LinkButton } from "./linkButton";
 import { useEffect, useRef } from "react";
 import { useSession } from "next-auth/react";
 import { signIn, signOut } from "next-auth/react";
+import { UserRoles } from "@/lib/roles";
 
 interface NavigationProps {
   isOpen: boolean;
@@ -60,7 +61,7 @@ export const NavigationPane: React.FC<NavigationProps> = ({
       </button>
       <button>
         <ul className={`flex flex-col ${isOpen ? "opacity-1" : "opacity-0"}`}>
-          {role && role === "ADMIN" && (
+          {role && role === UserRoles.ADMIN && (
             <LinkButton text="Admin" link="/admin" />
           )}
           <LinkButton text="Home" link="/" />
