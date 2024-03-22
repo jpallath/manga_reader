@@ -21,6 +21,8 @@ export const options: NextAuthOptions = {
           session.user.id = userData.id;
           // @ts-ignore
           session.user.username = userData.username;
+          // @ts-ignore
+          session.user.role = userData.role;
           session.user.email = userData.email;
         }
       }

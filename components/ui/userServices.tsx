@@ -9,6 +9,7 @@ export const UserServices = () => {
   const [showServices, setServices] = useState(false);
   const [username, setUsername] = useState("");
   const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
   const { data: session, status, update } = useSession();
   useEffect(() => {
     const checkUsername = async () => {
@@ -29,8 +30,13 @@ export const UserServices = () => {
       session.user &&
       session.user.email
     ) {
-      await updateUsername(username, session?.user?.email);
-      return await update();
+      setLoading(true);
+      const response = await updateUsername(username, session?.user?.email);
+      if (response) return await update();
+      else {
+        throw "error";
+      }
+      setLoading(false);
     }
   };
   useEffect(() => {
@@ -77,6 +83,7 @@ export const UserServices = () => {
             type="submit"
             onClick={submitUsername}
             active={username.length >= 8 && !error}
+            loading={loading}
           >
             <p className="text-background">Submit</p>
           </Button>

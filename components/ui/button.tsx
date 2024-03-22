@@ -3,6 +3,7 @@ interface ButtonProps {
   type?: string;
   children: React.ReactNode;
   active: boolean;
+  loading?: boolean;
   data?: any;
   onClick?: (data: any) => void;
 }
@@ -12,6 +13,7 @@ export const Button: React.FC<ButtonProps> = ({
   type,
   children,
   active = true,
+  loading = false,
   data,
   onClick,
 }) => {
@@ -47,7 +49,11 @@ export const Button: React.FC<ButtonProps> = ({
   const buttonType = typeOptions(type);
   return (
     <button className={buttonClassName} type={buttonType} onClick={onClick}>
-      {children}
+      {loading ? <LoadingComponent /> : children}
     </button>
   );
+};
+
+const LoadingComponent = () => {
+  return <span className="loading loading-ring loading-md"></span>;
 };

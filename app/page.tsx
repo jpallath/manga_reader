@@ -22,16 +22,21 @@ export default async function Home() {
   return (
     <div>
       <div>
-        <div className="carousel rounded-box">
+        <div className="carousel rounded-box p-4">
           {images.map((sery) => {
             return (
-              <div key={sery.id} className="carousel-item basis-1/2">
+              <div
+                key={sery.id}
+                className="carousel-item basis-1/2 group relative"
+              >
                 <Link href={`series/${sery.shortName}`}>
                   <picture className="w-full h-full flex items-center justify-center">
                     <img className="w-auto h-5/6" src={sery.image} />
                   </picture>
-                  <h1 className="text-text">{sery.name}</h1>
                 </Link>
+                <h3 className="group-hover:opacity-1 text-background opacity-0 absolute bottom-2">
+                  {sery.name}
+                </h3>
               </div>
             );
           })}

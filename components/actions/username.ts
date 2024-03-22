@@ -17,17 +17,14 @@ export const findUsername = async (username: string) => {
 };
 
 export const updateUsername = async (username: string, email: string) => {
-  console.log(username);
-  console.log(email);
-  console.log("~~~~~~~~~~~~~~~~~~~");
   try {
     const user = await prisma.user.update({
       where: { email },
       data: { username },
     });
+    return true;
   } catch (error) {
     console.log(error);
+    return false;
   }
-  revalidatePath("/user/register");
-  redirect("/");
 };
