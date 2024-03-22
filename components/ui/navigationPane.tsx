@@ -1,5 +1,4 @@
 "use client";
-import Link from "next/link";
 import { LinkButton } from "./linkButton";
 import { useEffect, useRef } from "react";
 import { useSession } from "next-auth/react";
@@ -18,7 +17,9 @@ export const NavigationPane: React.FC<NavigationProps> = ({
 }) => {
   const navRef = useRef<HTMLDivElement>(null);
   const { data: session, status } = useSession();
-  console.log(session, status);
+
+  // @ts-ignore
+  const role = session?.user?.role;
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -59,7 +60,9 @@ export const NavigationPane: React.FC<NavigationProps> = ({
       </button>
       <button>
         <ul className={`flex flex-col ${isOpen ? "opacity-1" : "opacity-0"}`}>
-          <LinkButton text="Admin" link="/admin" />
+          {role && role === "ADMIN" && (
+            <LinkButton text="Admin" link="/admin" />
+          )}
           <LinkButton text="Home" link="/" />
         </ul>
       </button>

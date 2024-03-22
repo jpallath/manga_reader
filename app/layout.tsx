@@ -4,6 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "./providers";
 import { ThemeToggle } from "@/components/ui/themeToggle";
+import { UserServices } from "@/components/ui/userServices";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -26,6 +27,7 @@ export default function RootLayout({
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <UserServices/>
           {children}
           <ThemeToggle />
         </ThemeProvider>

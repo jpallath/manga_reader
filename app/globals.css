@@ -34,3 +34,21 @@ input[type="file"]::file-selector-button {
     color: #010104;
   }
 }
+
+.element {
+  opacity: 0; /* Initially hide the element */
+  position: fixed; /* Fixed positioning for full screen animation */
+  bottom: 0%; /* Position off-screen below the viewport */
+  width: 100%; /* Set width to full screen */
+  transition: transform 1s ease-in-out, opacity 0.5s ease-in-out; /* Define transition properties */
+}
+
+.element.onscreen {
+  opacity: 1;
+  transform: translateY(0%);
+}
+
+.element.offscreen {
+  opacity: 0;
+  transform: translateY(100%);
+}

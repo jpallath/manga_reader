@@ -12,14 +12,18 @@ export const options: NextAuthOptions = {
   ],
   callbacks: {
     async session({ session, user }) {
-      // @ts-ignore
-      // if (user) {
-      //   const userData = await prisma.user.findUnique({
-      //     where: { email: user.email },
-      //   });
-      //   console.log(userData);
-      // }
-
+      if (session?.user?.email) {
+        const userData = await prisma.user.findUnique({
+          where: { email: session.user.email },
+        });
+        if (userData) {
+          // @ts-ignore
+          session.user.id = userData.id;
+          // @ts-ignore
+          session.user.username = userData.username;
+          session.user.email = userData.email;
+        }
+      }
       return session;
     },
     async signIn({ profile }) {
