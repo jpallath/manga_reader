@@ -1,7 +1,7 @@
 "use client";
 import { findUsername, updateUsername } from "@/components/actions/username";
 import { useEffect, useState } from "react";
-import { signIn, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 
@@ -44,7 +44,7 @@ export const UserServices = () => {
     if (status === "authenticated" && !session?.user?.username) {
       setServices(true);
     }
-  });
+  }, []);
   useEffect(() => {
     // @ts-ignore
     if (status === "authenticated" && session?.user?.username) {

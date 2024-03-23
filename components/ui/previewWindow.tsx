@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
+import Image from "next/image";
 
 export const PreviewWindow: React.FC<{
   src: string;
@@ -41,7 +42,7 @@ export const PreviewWindow: React.FC<{
         width: width,
       }}
     >
-      <img
+      <Image
         className="preview-window"
         onContextMenu={handleContextMenu}
         src={src}

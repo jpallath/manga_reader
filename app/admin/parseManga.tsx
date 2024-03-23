@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { fetchManga, saveManga } from "./parseMangaActions";
 import { useState } from "react";
 import { Input } from "@/components/ui/input";
+import Image from "next/image";
 
 export const ParseManga = () => {
   const [response, setResponse] = useState<any>(null);
@@ -74,7 +75,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = ({
           return (
             <div key={index} className="carousel-item basis-1/3">
               <picture>
-                <img src={image} />
+                <Image alt="preview" src={image} />
               </picture>
             </div>
           );

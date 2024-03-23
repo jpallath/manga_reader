@@ -1,6 +1,6 @@
 import { getAllSeries } from "@/db/series";
 import Link from "next/link";
-
+import Image from "next/image";
 import { storage } from "@/lib/firebaseConfig";
 import { ref, getDownloadURL } from "firebase/storage";
 import { RecentChapters } from "@/components/ui/recentChapters";
@@ -36,7 +36,11 @@ export default async function Home() {
               >
                 <Link href={`series/${sery.shortName}`} className="relative">
                   <picture className="w-full h-full flex items-center justify-center">
-                    <img className="w-auto h-5/6" src={sery.image} />
+                    <Image
+                      alt={sery.name}
+                      className="w-auto h-5/6"
+                      src={sery.image}
+                    />
                   </picture>
                   <h3 className="text-primary absolute bottom-8 bg-background w-full text-center rounded-xl">
                     {sery.name}
