@@ -1,3 +1,5 @@
+import { PreviewWindow } from "@/components/ui/previewWindow";
+
 type Page = {
   id: string;
   url: string;
@@ -21,22 +23,18 @@ export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
               id={`item${index}`}
               className={`carousel-item w-full`}
             >
-              <div>
-                <picture>
-                  <img src={image.imageUrl} alt={`Image ${index + 1}`} />
-                </picture>
-              </div>
+              <PreviewWindow src={image.imageUrl} width={"100%"} />
             </div>
           );
         })}
       </div>
-      <div className="flex justify-between w-full py-2 px-6 gap-2">
+      <div className="flex justify-between w-full py-6 px-6 gap-2">
         {pages.map((image, index) => {
           if (index == 0 || index == pages.length - 1) {
             return (
               <a
                 href={`#item${index}`}
-                className="bg-accent text-text w-4 p-1 text-xs flex justify-center rounded-xl"
+                className="bg-accent text-text w-8 p-1 text-xs flex justify-center rounded-xl"
               >
                 {index + 1}
               </a>
