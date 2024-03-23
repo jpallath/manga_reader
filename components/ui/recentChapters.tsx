@@ -34,7 +34,7 @@ interface ChaptersListProps {
 
 export const ChaptersList: React.FC<ChaptersListProps> = ({ chapters }) => {
   return (
-    <div className="flex flex-col gap-6 bg-transparent w-full">
+    <div className="flex flex-col gap-6 bg-transparent w-full pb-16">
       {chapters.map((chapter, index) => {
         return (
           <Link
