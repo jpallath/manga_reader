@@ -11,7 +11,7 @@ interface Crumbdata {
 
 export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ crumbs }) => {
   return (
-    <ul className="absolute text-sm breadcrumbs top-16 left-1/4 text-text flex gap-2">
+    <ul className="absolute text-sm breadcrumbs top-16 left-1/4 md:bottom-0 md:left-16 text-text flex gap-2">
       {crumbs.map((crumb, index) => {
         return (
           <li className="flex gap-2" key={index}>

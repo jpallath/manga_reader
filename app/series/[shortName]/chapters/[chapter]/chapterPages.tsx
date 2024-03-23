@@ -15,7 +15,7 @@ type ChapterPagesProps = {
 export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
   return (
     <div className="p-5 flex-col items-center justify-center">
-      <div className="carousel carousel-start rounded-box overflow-y-hidden w-64">
+      <div className="carousel carousel-start rounded-box overflow-y-hidden w-[22rem] md:w-[30rem]">
         {pages.map((image, index) => {
           return (
             <div
@@ -28,7 +28,7 @@ export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
           );
         })}
       </div>
-      <div className="flex justify-between w-full py-6 px-6 gap-2">
+      {/* <div className="flex justify-between w-full py-6 px-6 gap-2">
         {pages.map((image, index) => {
           if (index == 0 || index == pages.length - 1) {
             return (
@@ -41,7 +41,7 @@ export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
             );
           }
         })}
-      </div>
+      </div> */}
     </div>
   );
 };

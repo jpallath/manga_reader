@@ -39,7 +39,7 @@ export default async function Page({
       const images = await Promise.all(imagesPromises);
 
       return (
-        <div>
+        <div className="h-[100dvh] overflow-hidden place-content-center md:flex md:flex-row">
           <Breadcrumbs crumbs={crumbs} />
           <ChapterPages pages={images} />
         </div>
