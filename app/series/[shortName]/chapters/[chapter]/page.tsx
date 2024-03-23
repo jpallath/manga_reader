@@ -20,13 +20,12 @@ export default async function Page({
       chapter
     );
     const seriesName = chapterData?.series?.name || "";
-    const seriesId = chapterData?.series?.id;
     const chapterNumber = chapterData?.chapter || "";
     const crumbs = [
-      { text: seriesName, link: `/series/${seriesId}` },
+      { text: seriesName, link: `/series/${chapterData?.series.shortName}` },
       {
         text: `Chapter ${chapterNumber}`,
-        link: `/series/${seriesId}/chapter/${chapterData?.id}`,
+        link: `/series/${chapterData?.series.shortName}/chapter/${chapterData?.chapter}`,
       },
     ];
     if (chapterData) {

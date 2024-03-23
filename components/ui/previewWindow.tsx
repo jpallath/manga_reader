@@ -22,7 +22,7 @@ export const PreviewWindow: React.FC<{
 
   useEffect(() => {
     const handleTouchMove = (event: any) => {
-      event.preventDefault(); // Prevent default behavior (drag to reload)
+      event.preventDefault();
     };
 
     // Add touchmove event listener to document
@@ -32,7 +32,7 @@ export const PreviewWindow: React.FC<{
     return () => document.removeEventListener("touchmove", handleTouchMove);
   }, []);
 
-  const handleContextMenu = (event) => {
+  const handleContextMenu = (event: any) => {
     event.preventDefault(); // Prevent default context menu
   };
 
@@ -45,7 +45,7 @@ export const PreviewWindow: React.FC<{
       }}
     >
       <img
-        className="preview-window overflow-y-hidden touch-none"
+        className="preview-window"
         onContextMenu={handleContextMenu}
         src={src}
         style={{ height: height, width: width }}
@@ -82,8 +82,8 @@ export const PreviewWindow: React.FC<{
           const touchX = e.changedTouches[0].pageX;
           const touchY = e.changedTouches[0].pageY;
 
-          const x = touchX - left - window.pageXOffset;
-          const y = touchY - top - window.pageYOffset;
+          const x = touchX - left - window.scrollX;
+          const y = touchY - top - window.scrollY;
           setXY([x, y]);
         }}
         onMouseLeave={() => {
@@ -115,6 +115,7 @@ export const PreviewWindow: React.FC<{
           backgroundColor: "white",
           backgroundImage: `url('${src}')`,
           backgroundRepeat: "no-repeat",
+          borderRadius: "50%",
 
           //calculate zoomed image size
           backgroundSize: `${imgWidth * zoomLevel}px ${

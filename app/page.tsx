@@ -26,13 +26,13 @@ export default async function Home() {
 
   return (
     <div>
-      <div>
-        <div className="carousel rounded-box p-4">
+      <div className="px-8 md:height-100 md:overflow-y-hidden">
+        <div className="carousel rounded-box">
           {images.map((sery) => {
             return (
               <div
                 key={sery.id}
-                className="carousel-item basis-1/2 group relative"
+                className="carousel-item basis-1/2 md:basis-1/3 group relative"
               >
                 <Link href={`series/${sery.shortName}`}>
                   <picture className="w-full h-full flex items-center justify-center ">

@@ -14,8 +14,8 @@ type ChapterPagesProps = {
 };
 export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
   return (
-    <div className="p-5 md:p-0 md:flex flex-col md:items-center md:justify-center">
-      <div className="carousel carousel-start rounded-box w-128 md:w-6/12">
+    <div className="p-5 flex-col items-center justify-center">
+      <div className="carousel carousel-start rounded-box overflow-y-hidden w-64">
         {pages.map((image, index) => {
           return (
             <div
