@@ -25,16 +25,12 @@ export const PreviewWindow: React.FC<{
     const handleTouchMove = (event: any) => {
       event.preventDefault();
     };
-
-    // Add touchmove event listener to document
     document.addEventListener("touchmove", handleTouchMove);
-
-    // Cleanup function to remove event listener on unmount
     return () => document.removeEventListener("touchmove", handleTouchMove);
   }, []);
 
   const handleContextMenu = (event: any) => {
-    event.preventDefault(); // Prevent default context menu
+    event.preventDefault();
   };
 
   return (
