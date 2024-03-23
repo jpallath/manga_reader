@@ -28,7 +28,7 @@ export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
           );
         })}
       </div>
-      {/* <div className="flex justify-between w-full py-6 px-6 gap-2">
+      <div className="flex justify-between w-full py-6 px-6 gap-2 ">
         {pages.map((image, index) => {
           if (index == 0 || index == pages.length - 1) {
             return (
@@ -41,7 +41,7 @@ export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
             );
           }
         })}
-      </div> */}
+      </div>
     </div>
   );
 };

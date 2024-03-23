@@ -26,22 +26,22 @@ export default async function Home() {
 
   return (
     <div>
-      <div className="px-8 md:height-100 md:overflow-y-hidden">
-        <div className="carousel rounded-box">
+      <div className="px-8 md:height-[30rem] md:overflow-y-hidden">
+        <div className="carousel rounded-box h-full">
           {images.map((sery) => {
             return (
               <div
                 key={sery.id}
-                className="carousel-item basis-1/2 md:basis-1/3 group relative"
+                className="carousel-item basis-1/2 md:basis-[24.33%] group relative"
               >
-                <Link href={`series/${sery.shortName}`}>
-                  <picture className="w-full h-full flex items-center justify-center ">
+                <Link href={`series/${sery.shortName}`} className="relative">
+                  <picture className="w-full h-full flex items-center justify-center">
                     <img className="w-auto h-5/6" src={sery.image} />
                   </picture>
+                  <h3 className="text-primary absolute bottom-8 bg-background w-full text-center rounded-xl">
+                    {sery.name}
+                  </h3>
                 </Link>
-                <h3 className="group-hover:opacity-1 text-background opacity-0 absolute bottom-2">
-                  {sery.name}
-                </h3>
               </div>
             );
           })}
