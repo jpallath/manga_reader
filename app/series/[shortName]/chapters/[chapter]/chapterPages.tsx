@@ -33,6 +33,7 @@ export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
           if (index == 0 || index == pages.length - 1) {
             return (
               <a
+                key={index}
                 href={`#item${index}`}
                 className="bg-accent text-text w-8 p-1 text-xs flex justify-center rounded-xl"
               >
