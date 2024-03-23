@@ -13,7 +13,7 @@ export const RecentChapters = () => {
   return (
     <div className="flex items-center justify-center w-[100dvw]">
       <div className="border-t border-t-primary w-11/12 h-[400px] overflow-hidden ">
-        <h3 className="text-primary font-bold text-center pb-6">
+        <h3 className="text-text font-bold text-center pb-6">
           Recent Chapters
         </h3>
         <ul className="text-white w-full h-full overflow-y-scroll flex flex-col items-center">
@@ -34,13 +34,13 @@ interface ChaptersListProps {
 
 export const ChaptersList: React.FC<ChaptersListProps> = ({ chapters }) => {
   return (
-    <div className="flex flex-col gap-6 bg-background w-full">
+    <div className="flex flex-col gap-6 bg-transparent w-full">
       {chapters.map((chapter, index) => {
         return (
           <Link
             href={`series/${chapter.series.shortName}/chapters/${chapter.chapter}`}
             key={index}
-            className="text-white bg-secondary rounded-lg h-fit p-2.5"
+            className="text-text bg-primary rounded-lg h-fit p-2.5"
           >
             {chapter.series.name} - {chapter.chapter} / {chapter.title}
           </Link>

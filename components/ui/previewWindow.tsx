@@ -45,7 +45,7 @@ export const PreviewWindow: React.FC<{
       }}
     >
       <img
-        className="preview-window overflow-y-hidden"
+        className="preview-window overflow-y-hidden touch-none"
         onContextMenu={handleContextMenu}
         src={src}
         style={{ height: height, width: width }}
