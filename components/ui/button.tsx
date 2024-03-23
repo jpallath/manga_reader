@@ -2,7 +2,7 @@ interface ButtonProps {
   variant?: string;
   type?: string;
   children: React.ReactNode;
-  active: boolean;
+  active?: boolean;
   loading?: boolean;
   data?: any;
   onClick?: (data: any) => void;

@@ -1,6 +1,6 @@
 "use server";
 import { prisma } from "@/lib/prisma";
-interface ChapterData {
+export interface ChapterData {
   seriesId: string;
   chapter: number;
   images: string[];
@@ -38,6 +38,7 @@ export const fetchOrGenerateChapter = async (chapterData: ChapterData) => {
       where: { series_id: chapterData.seriesId, chapter: chapterData.chapter },
     });
     if (!chapter) {
+      // @ts-ignore
       chapter = await generateNewChapter(chapterData);
     }
     return chapter;

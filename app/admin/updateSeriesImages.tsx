@@ -24,10 +24,13 @@ export const UpdateSeriesImages = () => {
   }, []);
   const handleSubmit = async (event: any) => {
     event.preventDefault();
+    console.log(sery);
+    console.log(file);
     if (sery && file) {
       try {
         const seriesRef = ref(storage, `${sery.id}/main`);
         const data = await uploadBytes(seriesRef, file);
+        console.log(sery, seriesRef);
         await updateSeriesImage({
           seriesId: sery.id,
           imageUrl: data.metadata.fullPath,
@@ -42,6 +45,7 @@ export const UpdateSeriesImages = () => {
     if (sery) setSery(sery);
   };
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(event.target.files);
     const newFile = event.target.files?.[0];
     setFile(newFile);
   };
@@ -50,7 +54,7 @@ export const UpdateSeriesImages = () => {
       <input
         type="file"
         className="file-input w-full max-w-xs border-primary bg-background text-text"
-        onChange={() => handleChange}
+        onChange={handleChange}
       />
 
       <select
@@ -68,7 +72,9 @@ export const UpdateSeriesImages = () => {
         })}
       </select>
 
-      <Button type="submit">Submit</Button>
+      <Button type="submit" onClick={handleSubmit}>
+        Submit
+      </Button>
     </form>
   );
 };

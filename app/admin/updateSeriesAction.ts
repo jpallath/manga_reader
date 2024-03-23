@@ -11,6 +11,7 @@ export const updateSeriesImage = async (
   updateSeriesImage: UpdateSeriesImage
 ) => {
   try {
+    console.log("test");
     const { seriesId, imageUrl } = updateSeriesImage;
 
     await updateSeries({ id: seriesId, imageUrl });

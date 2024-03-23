@@ -1,5 +1,5 @@
 import { notFound } from "next/navigation";
-import { getChapters } from "@/components/actions/getChapters";
+import { getChapters } from "@/components/actions/chapters";
 import Link from "next/link";
 
 export default async function Page({

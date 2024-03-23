@@ -1,3 +1,4 @@
+"use server";
 import { prisma } from "@/lib/prisma";
 
 export const getChapters = async (shortName: string) => {
@@ -12,5 +13,18 @@ export const getChapters = async (shortName: string) => {
     });
   } catch (error) {
     throw error;
+  }
+};
+
+export const getRecentChapters = async () => {
+  try {
+    return await prisma.chapter.findMany({
+      orderBy: { createdAt: "desc" },
+      take: 10,
+      include: { series: true },
+    });
+  } catch (error) {
+    console.log(error);
+    return [];
   }
 };

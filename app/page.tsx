@@ -3,14 +3,19 @@ import Link from "next/link";
 
 import { storage } from "@/lib/firebaseConfig";
 import { ref, getDownloadURL } from "firebase/storage";
+import { RecentChapters } from "@/components/ui/recentChapters";
 
 export default async function Home() {
   const series = await getAllSeries();
   const imagesPromises = series.map(async (sery) => {
     if (sery.imageUrl) {
-      const imageRef = ref(storage, sery.imageUrl);
-      const imageUrl = await getDownloadURL(imageRef);
-      return { ...sery, image: imageUrl };
+      try {
+        const imageRef = ref(storage, sery.imageUrl);
+        const imageUrl = await getDownloadURL(imageRef);
+        return { ...sery, image: imageUrl };
+      } catch (error) {
+        console.log(error);
+      }
     }
     return {
       ...sery,
@@ -30,7 +35,7 @@ export default async function Home() {
                 className="carousel-item basis-1/2 group relative"
               >
                 <Link href={`series/${sery.shortName}`}>
-                  <picture className="w-full h-full flex items-center justify-center">
+                  <picture className="w-full h-full flex items-center justify-center ">
                     <img className="w-auto h-5/6" src={sery.image} />
                   </picture>
                 </Link>
@@ -42,6 +47,7 @@ export default async function Home() {
           })}
         </div>
       </div>
+      <RecentChapters />
     </div>
   );
 }
