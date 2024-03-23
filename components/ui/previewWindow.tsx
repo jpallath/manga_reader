@@ -19,6 +19,7 @@ export const PreviewWindow: React.FC<{
   const [[x, y], setXY] = useState<[number, number]>([0, 0]);
   const [[imgWidth, imgHeight], setSize] = useState<[number, number]>([0, 0]);
   const [showMagnifier, setShowMagnifier] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
 
   useEffect(() => {
     const handleTouchMove = (event: any) => {
@@ -50,35 +51,38 @@ export const PreviewWindow: React.FC<{
         src={src}
         style={{ height: height, width: width }}
         onMouseEnter={(e) => {
-          // update image size and turn-on magnifier
+          setIsDragging(true);
           const elem = e.currentTarget as HTMLImageElement;
           const { width, height } = elem.getBoundingClientRect();
           setSize([width, height]);
           setShowMagnifier(true);
+          setIsDragging(true);
         }}
         onTouchStart={(e) => {
-          // update image size and turn-on magnifier
+          setIsDragging(true);
           const elem = e.currentTarget as HTMLImageElement;
           const { width, height } = elem.getBoundingClientRect();
           setSize([width, height]);
           setShowMagnifier(true);
         }}
         onMouseMove={(e) => {
-          // update cursor position
+          if (isDragging) {
+            e.preventDefault();
+          }
           const elem = e.currentTarget as HTMLImageElement;
           const { top, left } = elem.getBoundingClientRect();
 
-          // calculate cursor position on the image
-          const x = e.pageX - left - window.pageXOffset;
-          const y = e.pageY - top - window.pageYOffset;
+          const x = e.pageX - left - window.scrollX;
+          const y = e.pageY - top - window.scrollY;
           setXY([x, y]);
         }}
         onTouchMove={(e) => {
-          // update cursor position
+          if (isDragging) {
+            e.preventDefault();
+          }
           const elem = e.currentTarget as HTMLImageElement;
           const { top, left } = elem.getBoundingClientRect();
 
-          // calculate cursor position on the image using touch coordinates
           const touchX = e.changedTouches[0].pageX;
           const touchY = e.changedTouches[0].pageY;
 
@@ -87,12 +91,12 @@ export const PreviewWindow: React.FC<{
           setXY([x, y]);
         }}
         onMouseLeave={() => {
-          // close magnifier
           setShowMagnifier(false);
+          setIsDragging(false);
         }}
         onTouchEnd={() => {
-          // close magnifier
           setShowMagnifier(false);
+          setIsDragging(false);
         }}
         alt={"img"}
       />
