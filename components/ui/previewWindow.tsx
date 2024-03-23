@@ -42,7 +42,7 @@ export const PreviewWindow: React.FC<{
         width: width,
       }}
     >
-      <Image
+      <img
         className="preview-window"
         onContextMenu={handleContextMenu}
         src={src}

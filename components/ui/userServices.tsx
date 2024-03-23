@@ -44,7 +44,7 @@ export const UserServices = () => {
     if (status === "authenticated" && !session?.user?.username) {
       setServices(true);
     }
-  }, []);
+  }, [status]);
   useEffect(() => {
     // @ts-ignore
     if (status === "authenticated" && session?.user?.username) {
@@ -62,8 +62,8 @@ export const UserServices = () => {
         <div>
           <h2 className="text-primary">Welcome to Seibu!</h2>
           <p className="text-secondary">
-            We'd love to have a bit more information. Please make a username
-            longer than 8 characters
+            We&apos;d love to have a bit more information. Please make a
+            username longer than 8 characters
           </p>
         </div>
         <div className="flex flex-col gap-2">

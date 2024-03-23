@@ -36,7 +36,7 @@ export default async function Home() {
               >
                 <Link href={`series/${sery.shortName}`} className="relative">
                   <picture className="w-full h-full flex items-center justify-center">
-                    <Image
+                    <img
                       alt={sery.name}
                       className="w-auto h-5/6"
                       src={sery.image}

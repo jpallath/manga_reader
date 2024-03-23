@@ -75,7 +75,7 @@ const ResponseComponent: React.FC<ResponseComponentProps> = ({
           return (
             <div key={index} className="carousel-item basis-1/3">
               <picture>
-                <Image alt="preview" src={image} />
+                <img alt="preview" src={image} />
               </picture>
             </div>
           );
