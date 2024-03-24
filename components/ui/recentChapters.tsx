@@ -1,15 +1,8 @@
-"use client";
-import { useState, useEffect } from "react";
 import { getRecentChapters } from "../actions/chapters";
 import Link from "next/link";
-export const RecentChapters = () => {
-  const [chapters, setChapters] = useState<any[]>();
-  useEffect(() => {
-    const getChapters = async () => {
-      setChapters(await getRecentChapters());
-    };
-    getChapters();
-  }, []);
+
+export const RecentChapters = async () => {
+  const chapters = await getRecentChapters();
   return (
     <div className="flex items-center justify-center w-[100dvw]">
       <div className="border-t border-t-primary w-11/12 h-[400px] overflow-hidden ">
@@ -17,11 +10,7 @@ export const RecentChapters = () => {
           Recent Chapters
         </h3>
         <ul className="text-white w-full h-full overflow-y-scroll flex flex-col items-center">
-          {!chapters ? (
-            <span className="loading loading-ring loading-md"></span>
-          ) : (
-            <ChaptersList chapters={chapters} />
-          )}
+          <ChaptersList chapters={chapters} />
         </ul>
       </div>
     </div>

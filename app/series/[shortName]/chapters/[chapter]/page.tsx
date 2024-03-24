@@ -2,10 +2,7 @@ import { getChapterPages } from "@/components/actions/getPages";
 import { ChapterPages } from "./chapterPages";
 import { getDownloadURL, ref } from "firebase/storage";
 import { storage } from "@/lib/firebaseConfig";
-import {
-  getSeriesByChapterId,
-  getChapterByShortNameAndNumber,
-} from "@/db/chapters";
+import { getChapterByShortNameAndNumber } from "@/db/chapters";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 
 export default async function Page({
