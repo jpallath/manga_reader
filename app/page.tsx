@@ -3,6 +3,8 @@ import Link from "next/link";
 import { storage } from "@/lib/firebaseConfig";
 import { ref, getDownloadURL } from "firebase/storage";
 import { RecentChapters } from "@/components/ui/recentChapters";
+import { Suspense } from "react";
+import { RecentChaptersSkeleton } from "@/components/ui/skeletons/recentChaptersSkeleton";
 
 export default async function Home() {
   const series = await getAllSeries();
@@ -50,7 +52,9 @@ export default async function Home() {
           })}
         </div>
       </div>
-      <RecentChapters />
+      <Suspense fallback={<RecentChaptersSkeleton />}>
+        <RecentChapters />
+      </Suspense>
     </div>
   );
 }

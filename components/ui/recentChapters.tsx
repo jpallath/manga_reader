@@ -10,11 +10,7 @@ export const RecentChapters = async () => {
           Recent Chapters
         </h3>
         <ul className="text-white w-full h-full overflow-y-scroll flex flex-col items-center">
-          {!chapters ? (
-            <span className="loading loading-ring loading-md"></span>
-          ) : (
-            <ChaptersList chapters={chapters} />
-          )}
+          <ChaptersList chapters={chapters} />
         </ul>
       </div>
     </div>
