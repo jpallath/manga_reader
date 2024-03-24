@@ -29,7 +29,7 @@ export const ChaptersList: React.FC<ChaptersListProps> = ({ chapters }) => {
           <Link
             href={`series/${chapter.series.shortName}/chapters/${chapter.chapter}`}
             key={index}
-            className="text-text bg-primary rounded-lg h-fit p-2.5"
+            className="text-text bg-secondary rounded-lg h-fit p-2.5"
           >
             {chapter.series.name} - {chapter.chapter} / {chapter.title}
           </Link>

@@ -8,16 +8,16 @@
 @layer base {
   :root[data-theme="light"],
   html.light {
-    --text: 2, 0, 20;
-    --background: 251, 251, 254;
-    --primary: 110, 32, 188;
-    --secondary: 94, 50, 143;
-    --accent: 243, 88, 166;
+    --text: 255, 255, 255;
+    --background: 102, 89, 187;
+    --primary: 188, 152, 106;
+    --secondary: 218, 173, 134;
+    --accent: 251, 238, 193;
   }
   :root[data-theme="dark"],
   html.dark {
-    --text: 237, 235, 255;
-    --background: 1, 1, 4;
+    --text: 255, 255, 255;
+    --background: 19, 19, 34;
     --primary: 145, 67, 223;
     --secondary: 155, 112, 205;
     --accent: 167, 12, 89;
