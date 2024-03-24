@@ -1,6 +1,5 @@
 import { getAllSeries } from "@/db/series";
 import Link from "next/link";
-import Image from "next/image";
 import { storage } from "@/lib/firebaseConfig";
 import { ref, getDownloadURL } from "firebase/storage";
 import { RecentChapters } from "@/components/ui/recentChapters";
