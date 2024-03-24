@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useSession } from "next-auth/react";
 import { signIn, signOut } from "next-auth/react";
 import { UserRoles } from "@/lib/roles";
+import { DropdownRoutes } from "./dropdownRoutes";
 
 interface NavigationProps {
   isOpen: boolean;
@@ -65,6 +66,10 @@ export const NavigationPane: React.FC<NavigationProps> = ({
             <LinkButton text="Admin" link="/admin" />
           )}
           <LinkButton text="Home" link="/" />
+          <DropdownRoutes
+            topic={"Admin"}
+            routes={[{ text: "Series", link: "/admin/series" }]}
+          />
         </ul>
       </button>
       {status === "unauthenticated" ? (
