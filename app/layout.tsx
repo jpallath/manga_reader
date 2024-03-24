@@ -22,7 +22,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          `h-[100dvh]  bg-gradient-to-b from-primary to-background font-sans relative antialiased flex items-center justify-center transition-all`,
+          `h-[100dvh]  bg-background font-sans relative antialiased flex items-center justify-center transition-all`,
           inter.className
         )}
       >

@@ -38,7 +38,7 @@ export const NavigationPane: React.FC<NavigationProps> = ({
   return (
     <div
       ref={navRef}
-      className={`absolute w-2/6 h-full transition-all flex items-center justify-center  bg-gradient-to-b from-primary to-background z-10 
+      className={`absolute w-2/6 h-full transition-all flex items-center justify-center  bg-background z-10 
         ${
           isOpen
             ? "left-0  border-r-secondary border-r-2 rounded-r-sm"
