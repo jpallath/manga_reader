@@ -35,14 +35,14 @@ export default async function Home() {
                 className="carousel-item basis-1/2 md:basis-[24.33%] group relative"
               >
                 <Link href={`series/${sery.shortName}`} className="relative">
-                  <picture className="w-full h-full flex items-center justify-center">
+                  <picture className="w-full h-full flex items-center justify-center rounded-xl">
                     <img
                       alt={sery.name}
-                      className="w-auto h-5/6"
+                      className="w-auto h-5/6 rounded-xl"
                       src={sery.image}
                     />
                   </picture>
-                  <h3 className="text-primary absolute bottom-8 bg-background w-full text-center rounded-xl">
+                  <h3 className="text-text absolute bottom-8 bg-primary w-full text-center rounded-xl">
                     {sery.name}
                   </h3>
                 </Link>
