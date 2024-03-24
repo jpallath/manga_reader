@@ -17,10 +17,10 @@
   :root[data-theme="dark"],
   html.dark {
     --text: 255, 255, 255;
-    --background: 19, 19, 34;
-    --primary: 145, 67, 223;
-    --secondary: 155, 112, 205;
-    --accent: 167, 12, 89;
+    --background: 40, 40, 40;
+    --primary: 53, 13, 51;
+    --secondary: 36, 0, 144;
+    --accent: 25, 0, 97;
   }
 }
 
