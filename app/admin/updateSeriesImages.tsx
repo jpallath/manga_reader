@@ -53,7 +53,7 @@ export const UpdateSeriesImages = () => {
     <form onSubmit={handleSubmit} className="flex flex-col gap-4">
       <input
         type="file"
-        className="file-input w-full max-w-xs border-primary bg-background text-text"
+        className="file-input w-full max-w-xs border-primary bg-primary text-text"
         onChange={handleChange}
       />
 

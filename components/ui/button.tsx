@@ -20,13 +20,13 @@ export const Button: React.FC<ButtonProps> = ({
   const variantOptions = (variant: string | undefined) => {
     switch (variant) {
       case "primary": {
-        return "bg-primary text-background";
+        return "bg-primary text-text";
       }
       case "secondary": {
         return "bg-secondary text-text";
       }
       default: {
-        return "bg-primary text-background";
+        return "bg-primary text-text";
       }
     }
   };
