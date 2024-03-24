@@ -20,11 +20,21 @@ interface ChaptersListProps {
 export const ChaptersListSkeleton = () => {
   return (
     <div className="flex flex-col gap-6 bg-transparent w-full pb-16">
-      <div className="text-text bg-primary rounded-lg h-8 p-2.5"></div>
-      <div className="text-text bg-primary rounded-lg h-8 p-2.5"></div>
-      <div className="text-text bg-primary rounded-lg h-8 p-2.5"></div>
-      <div className="text-text bg-primary rounded-lg h-8 p-2.5"></div>
-      <div className="text-text bg-primary rounded-lg h-8 p-2.5"></div>
+      <div className="text-text bg-primary rounded-lg h-8 p-2.5 flex items-center justify-center">
+        <span className="loading loading-ring loading-md"></span>
+      </div>
+      <div className="text-text bg-primary rounded-lg h-8 p-2.5 flex items-center justify-center">
+        <span className="loading loading-ring loading-md"></span>
+      </div>
+      <div className="text-text bg-primary rounded-lg h-8 p-2.5 flex items-center justify-center">
+        <span className="loading loading-ring loading-md"></span>
+      </div>
+      <div className="text-text bg-primary rounded-lg h-8 p-2.5 flex items-center justify-center">
+        <span className="loading loading-ring loading-md"></span>
+      </div>
+      <div className="text-text bg-primary rounded-lg h-8 p-2.5 flex items-center justify-center">
+        <span className="loading loading-ring loading-md"></span>
+      </div>
     </div>
   );
 };
