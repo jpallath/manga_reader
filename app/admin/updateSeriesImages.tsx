@@ -24,8 +24,6 @@ export const UpdateSeriesImages = () => {
   }, []);
   const handleSubmit = async (event: any) => {
     event.preventDefault();
-    console.log(sery);
-    console.log(file);
     if (sery && file) {
       try {
         const seriesRef = ref(storage, `${sery.id}/main`);
