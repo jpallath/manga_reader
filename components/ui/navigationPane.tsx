@@ -68,7 +68,10 @@ export const NavigationPane: React.FC<NavigationProps> = ({
           <LinkButton text="Home" link="/" />
           <DropdownRoutes
             topic={"Admin"}
-            routes={[{ text: "Series", link: "/admin/series" }]}
+            routes={[
+              { text: "Series", link: "/admin/series" },
+              { text: "Users", link: "/admin/users" },
+            ]}
           />
         </ul>
       </button>

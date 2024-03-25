@@ -33,6 +33,7 @@ export const DropdownRoutes: React.FC<DropdownRoutesProps> = ({
         {routes.map((route, idx) => {
           return (
             <li
+              key={idx}
               className={`transition-all duration-150 ease-in-out ${
                 active ? " opacity-100" : "  opacity-0"
               }`}
