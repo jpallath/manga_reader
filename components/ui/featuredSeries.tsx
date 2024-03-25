@@ -28,7 +28,7 @@ export const FeaturedSeries = async () => {
           return (
             <div
               key={sery.id}
-              className="carousel-item basis-1/2 md:basis-[24.33%] group relative"
+              className="carousel-item basis-1/2 md:basis-[24.33%] lg:basis-[25%] xl:basis-[10%] xl:px-[6rem] group relative"
             >
               <Link href={`series/${sery.shortName}`} className="relative">
                 <picture className="w-full h-full flex items-center justify-center rounded-xl">
