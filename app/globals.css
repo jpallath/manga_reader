@@ -13,6 +13,7 @@
     --primary: 188, 152, 106;
     --secondary: 218, 173, 134;
     --accent: 251, 238, 193;
+    --danger: 215, 50, 120;
   }
   :root[data-theme="dark"],
   html.dark {
@@ -21,6 +22,7 @@
     --primary: 53, 13, 51;
     --secondary: 36, 0, 144;
     --accent: 25, 0, 97;
+    --danger: 187, 31, 28;
   }
 }
 

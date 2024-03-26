@@ -23,7 +23,10 @@ export const Button: React.FC<ButtonProps> = ({
         return "bg-primary text-text";
       }
       case "secondary": {
-        return "bg-secondary text-text";
+        return "bg-secondary text-text border-white border-4";
+      }
+      case "danger": {
+        return "bg-danger text-text";
       }
       default: {
         return "bg-primary text-text";
@@ -45,7 +48,7 @@ export const Button: React.FC<ButtonProps> = ({
   };
   const buttonClassName = `btn ${variantOptions(variant)} + ${
     active ? "brightness-100" : "brightness-50"
-  }`;
+  } rounded-xl`;
   const buttonType = typeOptions(type);
   return (
     <button className={buttonClassName} type={buttonType} onClick={onClick}>

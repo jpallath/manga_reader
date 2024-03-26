@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { useSession } from "next-auth/react";
 import { signIn, signOut } from "next-auth/react";
 import { UserRoles } from "@/lib/roles";
+import { DropdownRoutes } from "./dropdownRoutes";
 
 interface NavigationProps {
   isOpen: boolean;
@@ -41,7 +42,7 @@ export const NavigationPane: React.FC<NavigationProps> = ({
       className={`absolute w-2/6 h-full transition-all flex items-center justify-center  bg-background z-10 
         ${
           isOpen
-            ? "left-0  border-r-secondary border-r-2 rounded-r-sm"
+            ? "left-0  border-r-secondary border-r-2 border-t-secondary border-t-2 border-b-secondary border-b-2 rounded-r-sm"
             : "-left-3/4  bg-background"
         }`}
     >
@@ -62,7 +63,13 @@ export const NavigationPane: React.FC<NavigationProps> = ({
       <button>
         <ul className={`flex flex-col ${isOpen ? "opacity-1" : "opacity-0"}`}>
           {role && role === UserRoles.ADMIN && (
-            <LinkButton text="Admin" link="/admin" />
+            <DropdownRoutes
+              topic={"Admin"}
+              routes={[
+                { text: "Series", link: "/admin/series" },
+                { text: "Users", link: "/admin/users" },
+              ]}
+            />
           )}
           <LinkButton text="Home" link="/" />
         </ul>
