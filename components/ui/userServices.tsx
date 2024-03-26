@@ -32,11 +32,11 @@ export const UserServices = () => {
     ) {
       setLoading(true);
       const response = await updateUsername(username, session?.user?.email);
+      setLoading(false);
       if (response) return await update();
       else {
         throw "error";
       }
-      setLoading(false);
     }
   };
   useEffect(() => {

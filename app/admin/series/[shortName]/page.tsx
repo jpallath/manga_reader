@@ -4,6 +4,7 @@ import { storage } from "@/lib/firebaseConfig";
 import { ref, getDownloadURL } from "firebase/storage";
 import { SeriesHeaderWithFileUpload } from "./seriesHeader";
 import { ChapterButton } from "./chapterbutton";
+import { AdminServicesAndChapters } from "./adminServicesAndChapters";
 
 export default async function AdminSeriesIndividualPage({
   params,
@@ -23,7 +24,7 @@ export default async function AdminSeriesIndividualPage({
     }
   }
   return (
-    <div className="flex flex-col gap-6">
+    <div className="flex flex-col gap-6 items-center relative">
       <SeriesHeaderWithFileUpload
         image={image}
         name={seriesData?.name}
@@ -31,15 +32,10 @@ export default async function AdminSeriesIndividualPage({
       />
       <div>
         <h3 className="text-text font-bold text-center pb-2">Chapters</h3>
-        {seriesData?.Chapter.map((chapter, index) => {
-          return (
-            <ChapterButton
-              key={index}
-              seriesTitle={seriesData?.name}
-              chapter={chapter}
-            />
-          );
-        })}
+        <AdminServicesAndChapters
+          chapters={seriesData?.Chapter}
+          seriesTitle={seriesData?.name}
+        />
       </div>
     </div>
   );
