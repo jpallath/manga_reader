@@ -25,6 +25,9 @@ export const Button: React.FC<ButtonProps> = ({
       case "secondary": {
         return "bg-secondary text-text border-white border-4";
       }
+      case "danger": {
+        return "bg-danger text-text";
+      }
       default: {
         return "bg-primary text-text";
       }

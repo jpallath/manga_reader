@@ -19,6 +19,7 @@ const config: Config = {
         primary: "rgba(var(--primary))",
         secondary: "rgba(var(--secondary))",
         accent: "rgba(var(--accent))",
+        danger: "rgba(var(--danger))",
       },
       screens: {
         sm: "640px",

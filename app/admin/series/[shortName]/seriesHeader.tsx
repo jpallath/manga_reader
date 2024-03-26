@@ -17,6 +17,7 @@ export const SeriesHeaderWithFileUpload: React.FC<
 > = ({ image, name, id }) => {
   const [preview, setPreview] = useState<string | null>(null);
   const [file, setFile] = useState<File | null>(null);
+  const [loading, setLoading] = useState(false);
 
   const onDrop = useCallback((acceptedFiles: Array<File>) => {
     const file = acceptedFiles[0];
@@ -32,12 +33,14 @@ export const SeriesHeaderWithFileUpload: React.FC<
   const handleSubmit = async () => {
     if (id && file) {
       try {
+        setLoading(true);
         const seriesRef = ref(storage, `${id}/main`);
         const data = await uploadBytes(seriesRef, file);
         await updateSeriesImage({
           seriesId: id,
           imageUrl: data.metadata.fullPath,
         });
+        setLoading(false);
       } catch (error) {
         console.error(error);
         throw error;
@@ -49,13 +52,16 @@ export const SeriesHeaderWithFileUpload: React.FC<
   });
   return (
     <div className="flex flex-row overflow-hidden w-50 items-end gap-2">
-      <img className="max-w-[15rem]" src={`${preview ? preview : image}`} />
+      <img
+        className="max-w-[15rem] rounded-xl border-primary border-2"
+        src={`${preview ? preview : image}`}
+      />
       <div className="flex flex-col gap-2">
         <h3 className="text-text p-5 bg-primary w-full text-center rounded-xl">
           {name}
         </h3>
         {preview ? (
-          <Button variant="secondary" onClick={handleSubmit}>
+          <Button variant="secondary" loading={loading} onClick={handleSubmit}>
             Upload
           </Button>
         ) : (
