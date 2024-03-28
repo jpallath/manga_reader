@@ -36,10 +36,9 @@ export default async function Page({
       const images = await Promise.all(imagesPromises);
 
       return (
-        <>
-          {/* <Breadcrumbs crumbs={crumbs} /> */}
+        <div className="w-full h-full bg-bavkground flex justify-center items-center overscroll-y-none">
           <ChapterPages pages={images} />
-        </>
+        </div>
       );
     } else {
       return <></>;
