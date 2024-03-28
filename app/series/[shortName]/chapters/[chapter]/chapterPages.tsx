@@ -51,7 +51,7 @@ export const NewAndImprovedChapterPage: React.FC<ChapterPagesProps> = ({
 
 export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
   return (
-    <div className="w-full h-full bg-bavkground flex justify-center items-center">
+    <div className="w-full h-full bg-bavkground flex justify-center items-center overscroll-y-none">
       <div className="carousel carousel-start">
         {pages.map((image, index) => {
           return (
