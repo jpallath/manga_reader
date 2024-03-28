@@ -12,7 +12,9 @@ type Page = {
 type ChapterPagesProps = {
   pages: Page[];
 };
-export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
+export const NewAndImprovedChapterPage: React.FC<ChapterPagesProps> = ({
+  pages,
+}) => {
   return (
     <div className="p-5 flex-col items-center justify-center relative">
       <div className="carousel carousel-start rounded-box overflow-y-hidden w-[22rem] md:w-[30rem]">
@@ -41,6 +43,26 @@ export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
               </a>
             );
           }
+        })}
+      </div>
+    </div>
+  );
+};
+
+export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
+  return (
+    <div className="w-full h-full bg-bavkground flex justify-center items-center overscroll-y-none">
+      <div className="carousel carousel-start">
+        {pages.map((image, index) => {
+          return (
+            <div
+              key={index}
+              id={`item${index}`}
+              className={`carousel-item flex`}
+            >
+              <PreviewWindow src={image.imageUrl} />
+            </div>
+          );
         })}
       </div>
     </div>
