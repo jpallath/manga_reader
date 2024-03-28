@@ -37,6 +37,11 @@ input[type="file"]::file-selector-button {
   }
 }
 
+html,
+body {
+  overscroll-behavior-y: contain;
+}
+
 .element {
   opacity: 0; /* Initially hide the element */
   position: fixed; /* Fixed positioning for full screen animation */
