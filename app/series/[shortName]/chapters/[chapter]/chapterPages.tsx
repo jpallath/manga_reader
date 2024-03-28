@@ -55,7 +55,11 @@ export const ChapterPages: React.FC<ChapterPagesProps> = ({ pages }) => {
       <div className="carousel carousel-start">
         {pages.map((image, index) => {
           return (
-            <div key={index} id={`item${index}`} className={`carousel-item`}>
+            <div
+              key={index}
+              id={`item${index}`}
+              className={`carousel-item flex`}
+            >
               <PreviewWindow src={image.imageUrl} />
             </div>
           );

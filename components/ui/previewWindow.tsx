@@ -34,7 +34,7 @@ export const PreviewWindow: React.FC<{
   return (
     <>
       <picture
-        className={`w-[98dvw] px-[2dvw] h-auto ${
+        className={`w-[98dvw] px-[2dvw] h-auto max-h-[98dvh] ${
           isDragging ? "overscroll-x-none" : ""
         }`}
       >

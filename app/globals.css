@@ -60,6 +60,8 @@ body {
   transform: translateY(100%);
 }
 
-/* .preview-window {
-  overscroll-behavior: none;
-} */
+img.preview-window {
+  max-width: 100% !important;
+  width: auto !important;
+  max-height: 100% !important;
+}
