@@ -11,13 +11,25 @@ export const ThemeToggle = () => {
   }, [theme]);
 
   return (
-    <label className="flex flex-col absolute bottom-16 right-16">
-      <button
-        className="p-2 rounded-lg absolute bg-background border border-text"
-        onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      >
-        {icon}
-      </button>
-    </label>
+    <div className="flex flex-row absolute bottom-16 right-4 gap-2">
+      <label>
+        <button
+          onClick={() => {
+            window.location.reload();
+          }}
+          className="p-2 rounded-lg  bg-background border border-text"
+        >
+          🔄
+        </button>
+      </label>
+      <label>
+        <button
+          className="p-2 rounded-lg  bg-background border border-text"
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+        >
+          {icon}
+        </button>
+      </label>
+    </div>
   );
 };

@@ -37,6 +37,11 @@ input[type="file"]::file-selector-button {
   }
 }
 
+html,
+body {
+  overscroll-behavior-y: contain;
+}
+
 .element {
   opacity: 0; /* Initially hide the element */
   position: fixed; /* Fixed positioning for full screen animation */
@@ -55,6 +60,8 @@ input[type="file"]::file-selector-button {
   transform: translateY(100%);
 }
 
-/* .preview-window {
-  overscroll-behavior: none;
-} */
+img.preview-window {
+  max-width: 100% !important;
+  width: auto !important;
+  max-height: 100% !important;
+}
