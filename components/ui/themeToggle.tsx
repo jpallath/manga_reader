@@ -11,7 +11,7 @@ export const ThemeToggle = () => {
   }, [theme]);
 
   return (
-    <div className="flex flex-row absolute bottom-16 right-4 gap-2">
+    <div className="flex flex-row absolute bottom-4 right-4 gap-2">
       <label>
         <button
           onClick={() => {
