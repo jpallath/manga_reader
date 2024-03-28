@@ -33,7 +33,9 @@ export const PreviewWindow: React.FC<{
 
   return (
     <>
-      <picture className="w-[100dvw] h-auto overscroll-y-none">
+      <picture
+        className={`w-[100dvw] h-auto ${isDragging ? "overscroll-x-none" : ""}`}
+      >
         <img
           className="preview-window"
           onContextMenu={handleContextMenu}
