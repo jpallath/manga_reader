@@ -1,6 +1,5 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import Image from "next/image";
 
 export const PreviewWindow: React.FC<{
   src: string;
@@ -11,8 +10,6 @@ export const PreviewWindow: React.FC<{
   zoomLevel?: number;
 }> = ({
   src,
-  width,
-  height,
   magnifierHeight = 200,
   magnifierWidth = 200,
   zoomLevel = 1.5,
@@ -35,99 +32,93 @@ export const PreviewWindow: React.FC<{
   };
 
   return (
-    <div
-      style={{
-        position: "relative",
-        height: height,
-        width: width,
-      }}
-    >
-      <img
-        className="preview-window"
-        onContextMenu={handleContextMenu}
-        src={src}
-        style={{ height: height, width: width }}
-        onMouseEnter={(e) => {
-          setIsDragging(true);
-          const elem = e.currentTarget as HTMLImageElement;
-          const { width, height } = elem.getBoundingClientRect();
-          setSize([width, height]);
-          setShowMagnifier(true);
-          setIsDragging(true);
-        }}
-        onTouchStart={(e) => {
-          setIsDragging(true);
-          const elem = e.currentTarget as HTMLImageElement;
-          const { width, height } = elem.getBoundingClientRect();
-          setSize([width, height]);
-          setShowMagnifier(true);
-        }}
-        onMouseMove={(e) => {
-          if (isDragging) {
-            e.preventDefault();
-          }
-          const elem = e.currentTarget as HTMLImageElement;
-          const { top, left } = elem.getBoundingClientRect();
+    <>
+      <picture className="w-[100dvw] h-auto overscroll-y-none">
+        <img
+          className="preview-window"
+          onContextMenu={handleContextMenu}
+          src={src}
+          onMouseEnter={(e) => {
+            setIsDragging(true);
+            const elem = e.currentTarget as HTMLImageElement;
+            const { width, height } = elem.getBoundingClientRect();
+            setSize([width, height]);
+            setShowMagnifier(true);
+            setIsDragging(true);
+          }}
+          onTouchStart={(e) => {
+            setIsDragging(true);
+            const elem = e.currentTarget as HTMLImageElement;
+            const { width, height } = elem.getBoundingClientRect();
+            setSize([width, height]);
+            setShowMagnifier(true);
+          }}
+          onMouseMove={(e) => {
+            if (isDragging) {
+              e.preventDefault();
+            }
+            const elem = e.currentTarget as HTMLImageElement;
+            const { top, left } = elem.getBoundingClientRect();
 
-          const x = e.pageX - left - window.scrollX;
-          const y = e.pageY - top - window.scrollY;
-          setXY([x, y]);
-        }}
-        onTouchMove={(e) => {
-          if (isDragging) {
-            e.preventDefault();
-          }
-          const elem = e.currentTarget as HTMLImageElement;
-          const { top, left } = elem.getBoundingClientRect();
+            const x = e.pageX - left - window.scrollX;
+            const y = e.pageY - top - window.scrollY;
+            setXY([x, y]);
+          }}
+          onTouchMove={(e) => {
+            if (isDragging) {
+              e.preventDefault();
+            }
+            const elem = e.currentTarget as HTMLImageElement;
+            const { top, left } = elem.getBoundingClientRect();
 
-          const touchX = e.changedTouches[0].pageX;
-          const touchY = e.changedTouches[0].pageY;
+            const touchX = e.changedTouches[0].pageX;
+            const touchY = e.changedTouches[0].pageY;
 
-          const x = touchX - left - window.scrollX;
-          const y = touchY - top - window.scrollY;
-          setXY([x, y]);
-        }}
-        onMouseLeave={() => {
-          setShowMagnifier(false);
-          setIsDragging(false);
-        }}
-        onTouchEnd={() => {
-          setShowMagnifier(false);
-          setIsDragging(false);
-        }}
-        alt={"img"}
-      />
+            const x = touchX - left - window.scrollX;
+            const y = touchY - top - window.scrollY;
+            setXY([x, y]);
+          }}
+          onMouseLeave={() => {
+            setShowMagnifier(false);
+            setIsDragging(false);
+          }}
+          onTouchEnd={() => {
+            setShowMagnifier(false);
+            setIsDragging(false);
+          }}
+          alt={"img"}
+        />
+        <div
+          style={{
+            display: showMagnifier ? "" : "none",
+            position: "absolute",
 
-      <div
-        style={{
-          display: showMagnifier ? "" : "none",
-          position: "absolute",
+            // prevent magnifier blocks the mousemove event of img
+            pointerEvents: "none",
+            // set size of magnifier
+            height: `${magnifierHeight}px`,
+            width: `${magnifierWidth}px`,
+            // move element center to cursor pos
+            top: `${y - magnifierHeight / 2}px`,
+            left: `${x - magnifierWidth / 2}px`,
+            opacity: "1", // reduce opacity so you can verify position
+            border: "1px solid lightgray",
+            backgroundColor: "white",
+            backgroundImage: `url('${src}')`,
+            backgroundRepeat: "no-repeat",
+            borderRadius: "50%",
 
-          // prevent magnifier blocks the mousemove event of img
-          pointerEvents: "none",
-          // set size of magnifier
-          height: `${magnifierHeight}px`,
-          width: `${magnifierWidth}px`,
-          // move element center to cursor pos
-          top: `${y - magnifierHeight / 2}px`,
-          left: `${x - magnifierWidth / 2}px`,
-          opacity: "1", // reduce opacity so you can verify position
-          border: "1px solid lightgray",
-          backgroundColor: "white",
-          backgroundImage: `url('${src}')`,
-          backgroundRepeat: "no-repeat",
-          borderRadius: "50%",
+            //calculate zoomed image size
+            backgroundSize: `${imgWidth * zoomLevel}px ${
+              imgHeight * zoomLevel
+            }px`,
 
-          //calculate zoomed image size
-          backgroundSize: `${imgWidth * zoomLevel}px ${
-            imgHeight * zoomLevel
-          }px`,
-
-          //calculate position of zoomed image.
-          backgroundPositionX: `${-x * zoomLevel + magnifierWidth / 2}px`,
-          backgroundPositionY: `${-y * zoomLevel + magnifierHeight / 2}px`,
-        }}
-      ></div>
-    </div>
+            //calculate position of zoomed image.
+            backgroundPositionX: `${-x * zoomLevel + magnifierWidth / 2}px`,
+            backgroundPositionY: `${-y * zoomLevel + magnifierHeight / 2}px`,
+          }}
+        ></div>
+      </picture>
+    </>
   );
 };
